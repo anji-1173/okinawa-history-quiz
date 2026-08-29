@@ -5,7 +5,7 @@ import { sources } from "./data/sources";
 import { readResults } from "./lib/progress";
 import type { Difficulty, QuizResult } from "./types";
 
-type View = "home" | "quiz" | "map" | "sources";
+type View = "home" | "journey" | "quiz" | "map" | "sources";
 
 const difficulties = Object.keys(difficultyMeta) as Difficulty[];
 const HistoryMap = lazy(() => import("./components/HistoryMap"));
@@ -23,7 +23,7 @@ function WaveMark() {
 export default function App() {
   const [view, setView] = useState<View>(() => {
     const hash = window.location.hash.replace("#", "");
-    return hash === "map" || hash === "sources" ? hash : "home";
+    return hash === "journey" || hash === "map" || hash === "sources" ? hash : "home";
   });
   const [difficulty, setDifficulty] = useState<Difficulty>("beginner");
   const [results, setResults] = useState<Partial<Record<Difficulty, QuizResult>>>(() => readResults());
@@ -32,7 +32,7 @@ export default function App() {
   useEffect(() => {
     const onHashChange = () => {
       const hash = window.location.hash.replace("#", "");
-      if (hash === "home" || hash === "map" || hash === "sources") setView(hash);
+      if (hash === "home" || hash === "journey" || hash === "map" || hash === "sources") setView(hash);
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
@@ -72,7 +72,7 @@ export default function App() {
           </span>
         </button>
         <nav aria-label="メインメニュー">
-          <button type="button" aria-current={view === "home" ? "page" : undefined} onClick={() => go("home")}>
+          <button type="button" aria-current={view === "home" || view === "journey" ? "page" : undefined} onClick={() => go("journey")}>
             時代を学ぶ
           </button>
           <button type="button" aria-current={view === "map" ? "page" : undefined} onClick={() => go("map")}>
@@ -86,6 +86,38 @@ export default function App() {
           <span>{completedCourses}</span> / 3 コース
         </button>
       </header>
+
+      {view === "journey" && (
+        <main id="main-content" className="journey-picker-page">
+          <button className="text-button" type="button" onClick={() => go("home")}>← ホームへ戻る</button>
+          <section className="journey-picker-intro">
+            <span className="eyebrow">THE EIGHT ERAS</span>
+            <h1>学びたい時代を選ぶ</h1>
+            <p>時代を選ぶと、その時代の初級・中級・上級コースへ進めます。現在は第3時代を公開中です。</p>
+          </section>
+          <div className="era-picker-list">
+            {eras.map((era) => (
+              <article className={`era-picker-card ${era.status === "available" ? "era-picker-card--available" : ""}`} key={era.id}>
+                <div className="era-card__number" style={{ borderColor: era.accent, color: era.accent }}>{String(era.number).padStart(2, "0")}</div>
+                <div>
+                  <span className="era-card__years">{era.years}</span>
+                  <h2>{era.title}</h2>
+                  <p>{era.summary}</p>
+                  {era.status === "available" ? (
+                    <div className="difficulty-picker" aria-label={`${era.title}の難易度`}>
+                      {difficulties.map((item) => (
+                        <button key={item} type="button" onClick={() => startQuiz(item)}>
+                          {difficultyMeta[item].label}<span>{difficultyMeta[item].description}</span>
+                        </button>
+                      ))}
+                    </div>
+                  ) : <span className="status-pill">準備中</span>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </main>
+      )}
 
       {view === "home" && (
         <main id="main-content">
@@ -101,7 +133,7 @@ export default function App() {
                 琉球王国から現代まで。年号を覚えるだけでなく、出来事の背景、人々の選択、場所に残る記憶をクイズと地図で結びます。
               </p>
               <div className="hero__actions">
-                <a className="primary-button" href="#journey">時代の旅を始める</a>
+                <button className="primary-button" type="button" onClick={() => go("journey")}>時代の旅を始める</button>
                 <button className="ghost-button" type="button" onClick={() => go("map")}>
                   地図から探す
                 </button>
@@ -262,3 +294,4 @@ export default function App() {
     </div>
   );
 }
+
