@@ -5,7 +5,7 @@ import { sources } from "./data/sources";
 import { readResults } from "./lib/progress";
 import type { Difficulty, QuizResult } from "./types";
 
-type View = "home" | "journey" | "quiz" | "map" | "sources";
+type View = "home" | "journey" | "lesson" | "quiz" | "map" | "sources";
 
 const difficulties = Object.keys(difficultyMeta) as Difficulty[];
 const HistoryMap = lazy(() => import("./components/HistoryMap"));
@@ -48,6 +48,11 @@ export default function App() {
   const startQuiz = (nextDifficulty: Difficulty) => {
     setDifficulty(nextDifficulty);
     setView("quiz");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const openLesson = () => {
+    setView("lesson");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -104,18 +109,38 @@ export default function App() {
                   <h2>{era.title}</h2>
                   <p>{era.summary}</p>
                   {era.status === "available" ? (
-                    <div className="difficulty-picker" aria-label={`${era.title}の難易度`}>
-                      {difficulties.map((item) => (
-                        <button key={item} type="button" onClick={() => startQuiz(item)}>
-                          {difficultyMeta[item].label}<span>{difficultyMeta[item].description}</span>
-                        </button>
-                      ))}
-                    </div>
+                    <button className="primary-button journey-card-button" type="button" onClick={openLesson}>この時代の流れを見る →</button>
                   ) : <span className="status-pill">準備中</span>}
                 </div>
               </article>
             ))}
           </div>
+        </main>
+      )}
+
+      {view === "lesson" && (
+        <main id="main-content" className="lesson-page">
+          <button className="text-button" type="button" onClick={() => go("journey")}>← 時代を選び直す</button>
+          <section className="lesson-hero">
+            <span className="eyebrow">ERA 03 · LEARNING BRIEF</span>
+            <h1>沖縄県の成立から沖縄戦</h1>
+            <p>まずは、制度の変化と人々の暮らしを一本の流れでつかみましょう。読み終えたら、問いの深さを選んでクイズへ進めます。</p>
+          </section>
+          <section className="lesson-timeline" aria-labelledby="lesson-timeline-title">
+            <div className="section-heading"><span className="eyebrow">A SHORT JOURNEY</span><h2 id="lesson-timeline-title">王国から県へ、そして戦場へ</h2></div>
+            <div className="lesson-steps">
+              <article><span>01</span><small>〜1872</small><h3>琉球王国</h3><p>中国・日本・東南アジアと交流を重ねた王国の時代。首里城を中心に政治と外交が営まれました。</p></article>
+              <article><span>02</span><small>1872–1879</small><h3>琉球藩</h3><p>明治政府が琉球藩を設置。王国から日本の近代国家へ組み込まれる過程が始まります。</p></article>
+              <article><span>03</span><small>1879–1945</small><h3>沖縄県</h3><p>琉球藩が廃止され沖縄県に。社会の近代化が進む一方、戦時体制が強まりました。</p></article>
+              <article><span>04</span><small>1944–1945</small><h3>戦争と記憶</h3><p>対馬丸などの学童疎開、島田叡や大田實らの戦時行政、沖縄戦を複数の資料から考えます。</p></article>
+            </div>
+          </section>
+          <section className="lesson-cta" aria-labelledby="lesson-cta-title">
+            <span className="eyebrow">READY FOR A QUIZ?</span><h2 id="lesson-cta-title">問いの深さを選ぶ</h2><p>導入を踏まえて、あなたに合うコースから始めましょう。</p>
+            <div className="difficulty-picker" aria-label="難易度">
+              {difficulties.map((item) => <button key={item} type="button" onClick={() => startQuiz(item)}>{difficultyMeta[item].label}<span>{difficultyMeta[item].description}</span></button>)}
+            </div>
+          </section>
         </main>
       )}
 
