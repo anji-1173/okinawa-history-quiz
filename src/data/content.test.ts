@@ -11,6 +11,11 @@ describe("historical content integrity", () => {
     expect(questions.filter((question) => question.difficulty === "advanced")).toHaveLength(10);
   });
 
+  it("states the 1879 administrative transition precisely", () => {
+    expect(questions[0].prompt).toContain("琉球藩に代わって");
+    expect(questions[0].explanation).toContain("1872年に琉球王国を琉球藩とし");
+  });
+
   it("keeps every answer and reference resolvable", () => {
     const placeIds = new Set(places.map((place) => place.id));
     for (const question of questions) {
@@ -32,3 +37,4 @@ describe("historical content integrity", () => {
     }
   });
 });
+
