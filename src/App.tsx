@@ -87,6 +87,7 @@ export default function App() {
             出典・方針
           </button>
         </nav>
+        {view === "sources" && <button className="header-return-quiz" type="button" onClick={() => startQuiz(difficulty)}>クイズへ戻る →</button>}
         <button className="header-progress" type="button" onClick={() => go("home")}>
           <span>{completedCourses}</span> / 3 コース
         </button>
