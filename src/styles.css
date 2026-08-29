@@ -217,6 +217,19 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
 }
 
 .journey-section, .course-section, .sources-page, .map-page { padding: 100px max(6vw, 56px); }
+.journey-picker-page { max-width: 1180px; margin: 0 auto; padding: 72px max(6vw, 56px) 110px; }
+.journey-picker-intro { max-width: 680px; padding: 72px 0 44px; }
+.journey-picker-intro h1 { margin: 12px 0 16px; font-family: "Yu Mincho", serif; font-size: clamp(2rem, 4vw, 3.4rem); }
+.journey-picker-intro p { color: var(--muted); line-height: 1.9; }
+.era-picker-list { display: grid; gap: 18px; }
+.era-picker-card { display: grid; grid-template-columns: 58px 1fr; gap: 20px; padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: #fffdf8; }
+.era-picker-card--available { border-color: rgba(185,87,72,.45); box-shadow: var(--shadow); }
+.era-picker-card h2 { margin: 8px 0 8px; font-family: "Yu Mincho", serif; font-size: 1.35rem; }
+.era-picker-card p { margin: 0 0 16px; color: var(--muted); line-height: 1.75; }
+.difficulty-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.difficulty-picker button { padding: 14px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--ink); cursor: pointer; text-align: left; font-weight: 700; }
+.difficulty-picker button:hover { border-color: var(--sea); background: #eef5f2; }
+.difficulty-picker button span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; font-weight: 400; }
 .section-heading { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(360px, 1.2fr); column-gap: 7vw; align-items: end; max-width: 1180px; margin-bottom: 48px; }
 .section-heading .eyebrow { grid-column: 1 / -1; margin-bottom: 15px; }
 .section-heading h2 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: clamp(2rem, 3.4vw, 3.65rem); font-weight: 600; line-height: 1.35; letter-spacing: .04em; }
@@ -416,6 +429,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
   .island-shape { width: 250px; }
   .hero__seal { display: none; }
   .journey-section, .course-section, .sources-page, .map-page { padding: 72px 22px 86px; }
+  .journey-picker-page { padding: 48px 22px 80px; }
+  .journey-picker-intro { padding: 48px 0 30px; }
+  .era-picker-card { grid-template-columns: 44px 1fr; gap: 14px; padding: 18px; }
+  .difficulty-picker { grid-template-columns: 1fr; }
   .section-heading { display: block; }
   .section-heading h2 { margin-bottom: 18px; }
   .era-timeline { grid-template-columns: 1fr; }
