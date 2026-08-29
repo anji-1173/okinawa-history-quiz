@@ -285,6 +285,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
 .answer-panel--correct { border-color: #2f7a68; }
 .answer-panel--wrong { border-color: #b95748; background: #f7ece8; }
 .answer-panel > strong { font-family: "Yu Mincho", serif; font-size: 1.15rem; }
+.answer-verdict { display: inline-flex; align-items: center; gap: 9px; }
+.answer-verdict > span { font-family: Georgia, serif; font-size: 1.65rem; line-height: 1; }
+.answer-panel--correct .answer-verdict > span { color: #2f7a68; }
+.answer-panel--wrong .answer-verdict > span { color: #b95748; }
 .answer-panel > p { color: #465c5e; line-height: 1.9; }
 .answer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 .map-link-button { padding: 10px 16px; border: 0; color: var(--sea); background: transparent; cursor: pointer; font-weight: 800; }
@@ -444,3 +448,4 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+

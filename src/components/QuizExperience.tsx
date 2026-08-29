@@ -138,7 +138,10 @@ export default function QuizExperience({
 
         {selectedIndex !== null && (
           <div className={`answer-panel ${isCorrect ? "answer-panel--correct" : "answer-panel--wrong"}`} aria-live="polite">
-            <strong>{isCorrect ? "正解です" : "ここを確かめましょう"}</strong>
+            <strong className="answer-verdict" aria-label={isCorrect ? "正解" : "不正解"}>
+              <span aria-hidden="true">{isCorrect ? "○" : "×"}</span>
+              {isCorrect ? "正解です" : "ここを確かめましょう"}
+            </strong>
             <p>{question.explanation}</p>
             <SourceLinks sourceIds={question.sourceIds} />
             <div className="answer-actions">
@@ -157,3 +160,4 @@ export default function QuizExperience({
     </main>
   );
 }
+
