@@ -60,7 +60,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "beginner",
     theme: "学童疎開",
-    prompt: "対馬丸が学童や疎開者を乗せて那覇港を出航した日はいつでしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館でも紹介されている、対馬丸が学童や疎開者を乗せて那覇港を出航した日はいつでしょう？",
     choices: ["1944年8月21日", "1945年1月31日", "1945年4月1日", "1945年6月23日"],
     correctIndex: 0,
     explanation:
@@ -74,7 +74,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "beginner",
     theme: "対馬丸事件",
-    prompt: "対馬丸を攻撃したアメリカ海軍の潜水艦はどれでしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館が伝える対馬丸を攻撃した、アメリカ海軍の潜水艦はどれでしょう？",
     choices: ["USS Arizona", "USS Bowfin", "USS Missouri", "USS Enterprise"],
     correctIndex: 1,
     explanation:
@@ -195,7 +195,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "史料の限界",
-    prompt: "対馬丸事件の乗船者・犠牲者数に留保が必要な主な理由は何でしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館が示す対馬丸事件の乗船者・犠牲者数に、留保が必要な主な理由は何でしょう？",
     choices: [
       "箝口令などにより当時の詳細な被害調査が十分でなかった",
       "船の名前が分からないから",
@@ -214,7 +214,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "疎開政策",
-    prompt: "和浦丸・暁空丸も対馬丸と一緒に学ぶ意義として最も適切なものはどれでしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館で扱われる対馬丸と、和浦丸・暁空丸も一緒に学ぶ意義として最も適切なものはどれでしょう？",
     choices: [
       "船団と学童疎開政策の全体像、到着後の生活まで考えられる",
       "対馬丸の沈没をなかったことにできる",
@@ -252,7 +252,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "Bowfinの現在",
-    prompt: "現在のUSS Bowfinについて正しい説明はどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館で保存・公開されているUSS Bowfinについて、正しい説明はどれでしょう？",
     choices: [
       "真珠湾で保存公開される博物館船で、National Historic Landmarkでもある",
       "対馬丸記念館の館内に保存されている",
@@ -271,7 +271,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "展示の比較",
-    prompt: "Bowfinを扱う二つの施設の中心的な視点の組み合わせとして適切なものはどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館と、沖縄県那覇市の対馬丸記念館がBowfin／対馬丸を扱うときの中心的な視点の組み合わせとして適切なものはどれでしょう？",
     choices: [
       "ハワイ：米潜水艦史／沖縄：学童疎開と民間被害の記憶",
       "ハワイ：琉球王国史／沖縄：宇宙開発史",
@@ -290,7 +290,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "資料が生まれる過程",
-    prompt: "大田實が県民の苦難を知るうえで重要だったと公式施設が説明するものはどれでしょう？",
+    prompt: "沖縄県豊見城市の旧海軍司令部壕資料館が、大田實と県民の苦難を知るうえで重要だと説明するものはどれでしょう？",
     choices: [
       "島田知事からの情報や自らの現地視察",
       "戦後に作られたテレビ番組だけ",
@@ -328,7 +328,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "資料比較",
-    prompt: "Bowfinの第6哨戒記録と対馬丸記念館の記述を比べた説明として最も適切なものはどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館が公開するBowfinの第6哨戒記録と、沖縄県那覇市の対馬丸記念館の記述を比べた説明として最も適切なものはどれでしょう？",
     choices: [
       "前者は作戦・戦果、後者は乗船者の経験と被害を中心にする",
       "両者は同じ文章を掲載している",
@@ -347,7 +347,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "作戦記録の読み方",
-    prompt: "Bowfin公式サイトの第6哨戒概要で、対馬丸はどのような枠組みに置かれていますか？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館の公式サイトにある第6哨戒概要で、対馬丸はどのような枠組みに置かれていますか？",
     choices: [
       "戦後の合同評価で認定された撃沈船・トン数と表彰の文脈",
       "沖縄県知事の行政記録の文脈",
@@ -366,7 +366,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "多面的理解",
-    prompt: "Bowfinを学ぶときの結論として、最も歴史的な複雑さを保つものはどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館のUSS Bowfin展示を学ぶときの結論として、最も歴史的な複雑さを保つものはどれでしょう？",
     choices: [
       "保存された軍事遺産であると同時に、対馬丸撃沈と民間被害の記憶にも結びつく",
       "保存されているので攻撃の被害は考えなくてよい",
@@ -385,7 +385,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "名称と記憶",
-    prompt: "Bowfinが『Pearl Harbor Avenger』と呼ばれる背景として、公式説明が挙げるものはどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館がUSS Bowfinを『Pearl Harbor Avenger』と呼ぶ背景として、公式説明が挙げるものはどれでしょう？",
     choices: [
       "真珠湾攻撃からちょうど1年後の1942年12月7日に進水したこと",
       "対馬丸事件から1年後に建造されたこと",
@@ -404,7 +404,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "歴史的資産",
-    prompt: "BowfinがNational Historic Landmarkであることから、直接は言えないことはどれでしょう？",
+    prompt: "ハワイ・真珠湾の太平洋艦艇潜水艦博物館に保存されるBowfinがNational Historic Landmarkであることから、直接は言えないことはどれでしょう？",
     choices: [
       "その艦が行ったすべての攻撃が倫理的に承認されている",
       "米国の歴史上重要な資産として保存対象になっている",
@@ -442,7 +442,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "資料の組み合わせ",
-    prompt: "対馬丸事件を多面的に理解するための資料の組み合わせとして最も適切なものはどれでしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館が伝える対馬丸事件を多面的に理解するための資料の組み合わせとして、最も適切なものはどれでしょう？",
     choices: [
       "生存者・遺族の記録、船団資料、Bowfinの哨戒記録",
       "艦の撃沈トン数だけ",
@@ -461,7 +461,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "advanced",
     theme: "数字の読み方",
-    prompt: "対馬丸記念会が犠牲者数を『氏名判明者数』として示すことの意味は何でしょう？",
+    prompt: "沖縄県那覇市の対馬丸記念館を運営する対馬丸記念会が、犠牲者数を『氏名判明者数』として示すことの意味は何でしょう？",
     choices: [
       "数字が調査の進展と限界を含むことを明示している",
       "乗船者が一人も分からないという意味",
