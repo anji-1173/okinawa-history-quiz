@@ -6,11 +6,11 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "beginner",
     theme: "沖縄県の成立",
-    prompt: "1879年、琉球王国に代わって設置された行政区分はどれでしょう？",
+    prompt: "1879年、琉球藩に代わって設置された行政区分はどれでしょう？",
     choices: ["琉球政府", "沖縄県", "沖縄民政府", "南西諸島庁"],
     correctIndex: 1,
     explanation:
-      "1879年3月、明治政府は首里城から国王尚泰を退去させ、沖縄県を設置しました。王国から県への転換は、制度だけでなく人々の帰属や暮らしにも大きな変化をもたらしました。",
+      "明治政府は1872年に琉球王国を琉球藩とし、1879年に琉球藩を廃止して沖縄県を設置しました。この一連の過程は「琉球処分」と呼ばれ、制度だけでなく人々の帰属や暮らしにも大きな変化をもたらしました。",
     sourceIds: ["archives-1879", "okinawa-history"],
     relatedPlaceIds: ["shuri-castle"],
   },
@@ -517,3 +517,4 @@ export const questions: Question[] = [
 
 export const questionsFor = (eraId: string, difficulty: Difficulty) =>
   questions.filter((question) => question.eraId === eraId && question.difficulty === difficulty);
+
