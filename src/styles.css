@@ -230,6 +230,22 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
 .difficulty-picker button { padding: 14px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--ink); cursor: pointer; text-align: left; font-weight: 700; }
 .difficulty-picker button:hover { border-color: var(--sea); background: #eef5f2; }
 .difficulty-picker button span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; font-weight: 400; }
+.journey-card-button { margin-top: 4px; }
+.lesson-page { max-width: 1120px; margin: 0 auto; padding: 72px max(6vw, 56px) 110px; }
+.lesson-hero { max-width: 720px; padding: 64px 0 48px; }
+.lesson-hero h1 { margin: 12px 0 16px; font-family: "Yu Mincho", serif; font-size: clamp(2rem, 4vw, 3.4rem); }
+.lesson-hero p, .lesson-cta p { color: var(--muted); line-height: 1.9; }
+.lesson-timeline { padding: 30px 0 64px; }
+.lesson-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.lesson-steps article { position: relative; padding: 22px 18px; border: 1px solid var(--line); border-radius: 9px; background: #fffdf8; }
+.lesson-steps article::after { position: absolute; top: 35px; right: -15px; width: 16px; height: 1px; background: var(--line); content: ""; }
+.lesson-steps article:last-child::after { display: none; }
+.lesson-steps span { color: var(--coral); font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; }
+.lesson-steps small { display: block; margin-top: 15px; color: #a15d37; font-family: Georgia, serif; }
+.lesson-steps h3 { margin: 7px 0 10px; font-family: "Yu Mincho", serif; }
+.lesson-steps p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.75; }
+.lesson-cta { padding: 42px 30px; border: 1px solid rgba(185,87,72,.35); border-radius: 10px; background: #fffaf2; }
+.lesson-cta h2 { margin: 10px 0 8px; font-family: "Yu Mincho", serif; }
 .section-heading { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(360px, 1.2fr); column-gap: 7vw; align-items: end; max-width: 1180px; margin-bottom: 48px; }
 .section-heading .eyebrow { grid-column: 1 / -1; margin-bottom: 15px; }
 .section-heading h2 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: clamp(2rem, 3.4vw, 3.65rem); font-weight: 600; line-height: 1.35; letter-spacing: .04em; }
@@ -433,6 +449,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #f0a54f; outline-offs
   .journey-picker-intro { padding: 48px 0 30px; }
   .era-picker-card { grid-template-columns: 44px 1fr; gap: 14px; padding: 18px; }
   .difficulty-picker { grid-template-columns: 1fr; }
+  .lesson-page { padding: 48px 22px 80px; }
+  .lesson-hero { padding: 48px 0 30px; }
+  .lesson-steps { grid-template-columns: 1fr; }
+  .lesson-steps article::after { top: auto; right: auto; bottom: -15px; left: 50%; width: 1px; height: 16px; }
+  .lesson-cta { padding: 28px 20px; }
   .section-heading { display: block; }
   .section-heading h2 { margin-bottom: 18px; }
   .era-timeline { grid-template-columns: 1fr; }
