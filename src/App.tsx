@@ -286,6 +286,10 @@ export default function App() {
             <p>
               事実・解釈・当事者の立場を分け、すべての問題に公的資料または施設の公式資料を紐づけます。戦争や犠牲を、派手な演出や速さの競争にしません。
             </p>
+            <div className="sources-intro__actions">
+              <button className="primary-button" type="button" onClick={() => startQuiz(difficulty)}>クイズへ戻る →</button>
+              <button className="text-button" type="button" onClick={() => go("journey")}>時代選択へ戻る</button>
+            </div>
           </section>
           <section className="policy-grid" aria-label="編集方針">
             <article><span>01</span><h2>一問一義</h2><p>条件不足で複数正解になる問題を避け、解説で背景と限界を補います。</p></article>
