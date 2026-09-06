@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { difficultyMeta } from "../data/eras";
+import { difficultyMeta, eras } from "../data/eras";
 import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
 import { shuffleQuestionChoices } from "../lib/quizChoices";
@@ -8,6 +8,8 @@ import SourceLinks from "./SourceLinks";
 import "./quiz-navigation.css";
 
 interface QuizExperienceProps {
+  eraId: string;
+  eraTitle: string;
   difficulty: Difficulty;
   onExit: () => void;
   onOpenMap: (placeId: string) => void;
@@ -15,18 +17,25 @@ interface QuizExperienceProps {
 }
 
 export default function QuizExperience({
+  eraId,
+  eraTitle,
   difficulty,
   onExit,
   onOpenMap,
   onComplete,
 }: QuizExperienceProps) {
-  const sourceQuestions = useMemo(() => questionsFor("prefecture-war", difficulty), [difficulty]);
+  const sourceQuestions = useMemo(() => questionsFor(eraId, difficulty), [eraId, difficulty]);
+  const featuredPlaceId = useMemo(
+    () => sourceQuestions.flatMap((item) => item.relatedPlaceIds)[0],
+    [sourceQuestions],
+  );
   const [quizQuestions, setQuizQuestions] = useState(() => shuffleQuestionChoices(sourceQuestions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => quizQuestions.map(() => null));
   const [finished, setFinished] = useState(false);
   const [restartKey, setRestartKey] = useState(0);
   const meta = difficultyMeta[difficulty];
+  const eraNumber = eras.find((era) => era.id === eraId)?.number ?? "";
   const question = quizQuestions[questionIndex];
   const selectedIndex = answers[questionIndex];
   const answeredCount = answers.filter((answer) => answer !== null).length;
@@ -96,9 +105,11 @@ export default function QuizExperience({
                 未回答の問題を続ける
               </button>
             )}
-            <button className="primary-button" type="button" onClick={() => onOpenMap("tsushima-maru-memorial")}>
-              関連する場所を見る
-            </button>
+            {featuredPlaceId && (
+              <button className="primary-button" type="button" onClick={() => onOpenMap(featuredPlaceId)}>
+                関連する場所を見る
+              </button>
+            )}
             <button className="secondary-button" type="button" onClick={restart}>
               もう一度挑戦する
             </button>
@@ -144,7 +155,7 @@ export default function QuizExperience({
 
       <section className="quiz-card" aria-labelledby="question-title">
         <div className="quiz-progress-copy">
-          <span>第3時代｜沖縄県の成立から沖縄戦</span>
+          <span>第{eraNumber}時代｜{eraTitle}</span>
           <span>第{questionIndex + 1}問 / 全{quizQuestions.length}問</span>
         </div>
         <p className="quiz-answered-count" role="status">{answeredCount} / {quizQuestions.length}問 回答済み</p>

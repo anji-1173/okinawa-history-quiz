@@ -134,6 +134,55 @@ export const sources: Source[] = [
     url: "https://www.nps.gov/subjects/nationalhistoriclandmarks/list-of-nhls-by-state.htm",
     checkedAt: "2026-08-29",
   },
+  {
+    id: "shurijo-about",
+    title: "首里城について",
+    organization: "沖縄美ら島財団（首里城公園）",
+    url: "https://oki-park.jp/shurijo/about/",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "shurijo-ryukyu-overview",
+    title: "首里城及び琉球王国の概要",
+    organization: "沖縄美ら島財団（首里城公園）",
+    url: "https://oki-park.jp/shurijo/info/6466/6467",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "bankoku-bell",
+    title: "万国津梁の鐘と首里城",
+    organization: "沖縄美ら島財団（首里城公園）",
+    url: "https://oki-park.jp/shurijo/about/3798/3826",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "japan-heritage-bell",
+    title: "旧首里城正殿鐘（万国津梁の鐘）",
+    organization: "文化庁 日本遺産ポータルサイト",
+    url: "https://japan-heritage.bunka.go.jp/ja/culturalproperties/result/4731/",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "shurijo-history",
+    title: "首里城の歴史",
+    organization: "おきなわ物語（沖縄観光コンベンションビューロー）",
+    url: "https://www.okinawastory.jp/feature/shurijo_R5/rekishi",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "omoro-soshi",
+    title: "おもろさうし（琉球･沖縄関係貴重資料デジタルアーカイブ）",
+    organization: "琉球大学附属図書館",
+    url: "https://shimuchi.lib.u-ryukyu.ac.jp/collection/iha",
+    checkedAt: "2026-09-06",
+  },
+  {
+    id: "rekidai-hoan",
+    title: "宝案入門 ―海で世界とつながる琉球人―（歴代宝案）",
+    organization: "沖縄県教育庁文化財課（琉球王国交流史デジタルアーカイブ）",
+    url: "https://ryuoki-archive.jp/d_columns/3742/",
+    checkedAt: "2026-09-06",
+  },
 ];
 
 export const sourceById = Object.fromEntries(sources.map((source) => [source.id, source]));
