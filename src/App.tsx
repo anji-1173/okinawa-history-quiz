@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
 import QuizExperience from "./components/QuizExperience";
 import { difficultyMeta, eras } from "./data/eras";
+import { lessonFor } from "./data/lessons";
+import { questions } from "./data/questions";
 import { sources } from "./data/sources";
 import { readResults } from "./lib/progress";
 import type { Difficulty, QuizResult } from "./types";
@@ -8,6 +10,9 @@ import type { Difficulty, QuizResult } from "./types";
 type View = "home" | "journey" | "lesson" | "quiz" | "map" | "sources";
 
 const difficulties = Object.keys(difficultyMeta) as Difficulty[];
+const availableEras = eras.filter((era) => era.status === "available");
+const firstAvailableEraId = availableEras[0]?.id ?? eras[0].id;
+const flagshipEraId = "prefecture-war";
 const HistoryMap = lazy(() => import("./components/HistoryMap"));
 
 function WaveMark() {
@@ -26,8 +31,13 @@ export default function App() {
     return hash === "journey" || hash === "map" || hash === "sources" ? hash : "home";
   });
   const [difficulty, setDifficulty] = useState<Difficulty>("beginner");
+  const [activeEraId, setActiveEraId] = useState<string>(firstAvailableEraId);
   const [results, setResults] = useState<Partial<Record<Difficulty, QuizResult>>>(() => readResults());
   const [initialPlaceId, setInitialPlaceId] = useState<string | undefined>();
+
+  const activeEra = eras.find((era) => era.id === activeEraId) ?? eras[0];
+  const activeLesson = lessonFor(activeEraId);
+  const publishedQuestions = questions.length;
 
   useEffect(() => {
     const onHashChange = () => {
@@ -45,13 +55,15 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const startQuiz = (nextDifficulty: Difficulty) => {
+  const startQuiz = (nextDifficulty: Difficulty, eraId: string = activeEraId) => {
+    setActiveEraId(eraId);
     setDifficulty(nextDifficulty);
     setView("quiz");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const openLesson = () => {
+  const openLesson = (eraId: string) => {
+    setActiveEraId(eraId);
     setView("lesson");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -99,7 +111,7 @@ export default function App() {
           <section className="journey-picker-intro">
             <span className="eyebrow">THE EIGHT ERAS</span>
             <h1>学びたい時代を選ぶ</h1>
-            <p>時代を選ぶと、その時代の初級・中級・上級コースへ進めます。現在は第3時代を公開中です。</p>
+            <p>時代を選ぶと、その時代の初級・中級・上級コースへ進めます。公開中の時代から始められます。</p>
           </section>
           <div className="era-picker-list">
             {eras.map((era) => (
@@ -110,7 +122,7 @@ export default function App() {
                   <h2>{era.title}</h2>
                   <p>{era.summary}</p>
                   {era.status === "available" ? (
-                    <button className="primary-button journey-card-button" type="button" onClick={openLesson}>この時代の流れを見る →</button>
+                    <button className="primary-button journey-card-button" type="button" onClick={() => openLesson(era.id)}>この時代の流れを見る →</button>
                   ) : <span className="status-pill">準備中</span>}
                 </div>
               </article>
@@ -123,17 +135,16 @@ export default function App() {
         <main id="main-content" className="lesson-page">
           <button className="text-button" type="button" onClick={() => go("journey")}>← 時代を選び直す</button>
           <section className="lesson-hero">
-            <span className="eyebrow">ERA 03 · LEARNING BRIEF</span>
-            <h1>沖縄県の成立から沖縄戦</h1>
-            <p>まずは、制度の変化と人々の暮らしを一本の流れでつかみましょう。読み終えたら、問いの深さを選んでクイズへ進めます。</p>
+            <span className="eyebrow">ERA {String(activeEra.number).padStart(2, "0")} · LEARNING BRIEF</span>
+            <h1>{activeEra.title}</h1>
+            <p>{activeLesson?.brief ?? activeEra.summary}</p>
           </section>
           <section className="lesson-timeline" aria-labelledby="lesson-timeline-title">
-            <div className="section-heading"><span className="eyebrow">A SHORT JOURNEY</span><h2 id="lesson-timeline-title">王国から県へ、そして戦場へ</h2></div>
+            <div className="section-heading"><span className="eyebrow">A SHORT JOURNEY</span><h2 id="lesson-timeline-title">{activeLesson?.timelineTitle ?? "この時代の流れ"}</h2></div>
             <div className="lesson-steps">
-              <article><span>01</span><small>〜1872</small><h3>琉球王国</h3><p>中国・日本・東南アジアと交流を重ねた王国の時代。首里城を中心に政治と外交が営まれました。</p></article>
-              <article><span>02</span><small>1872–1879</small><h3>琉球藩</h3><p>明治政府が琉球藩を設置。王国から日本の近代国家へ組み込まれる過程が始まります。</p></article>
-              <article><span>03</span><small>1879–1945</small><h3>沖縄県</h3><p>琉球藩が廃止され沖縄県に。社会の近代化が進む一方、戦時体制が強まりました。</p></article>
-              <article><span>04</span><small>1944–1945</small><h3>戦争と記憶</h3><p>対馬丸などの学童疎開、島田叡や大田實らの戦時行政、沖縄戦を複数の資料から考えます。</p></article>
+              {(activeLesson?.steps ?? [{ number: "01", period: activeEra.years, title: activeEra.title, body: activeEra.summary }]).map((step) => (
+                <article key={step.number}><span>{step.number}</span><small>{step.period}</small><h3>{step.title}</h3><p>{step.body}</p></article>
+              ))}
             </div>
           </section>
           <section className="lesson-cta" aria-labelledby="lesson-cta-title">
@@ -166,7 +177,7 @@ export default function App() {
               </div>
               <div className="hero__facts" aria-label="初版の収録内容">
                 <div><strong>8</strong><span>つの時代</span></div>
-                <div><strong>30</strong><span>問を先行公開</span></div>
+                <div><strong>{publishedQuestions}</strong><span>問を公開</span></div>
                 <div><strong>23</strong><span>の歴史地点</span></div>
               </div>
             </div>
@@ -185,7 +196,7 @@ export default function App() {
             <div className="section-heading">
               <span className="eyebrow">THE EIGHT ERAS</span>
               <h2 id="journey-title">八つの時代を、一本の物語に。</h2>
-              <p>まず「沖縄県の成立から沖縄戦」の30問を公開。残る時代も同じ型で順次追加します。</p>
+              <p>公開中の時代から挑戦できます。残る時代も同じ型で順次追加します。</p>
             </div>
 
             <div className="era-timeline">
@@ -234,7 +245,7 @@ export default function App() {
                     <h3>{meta.label}</h3>
                     <p>{meta.description}</p>
                     <span className="course-card__focus">{meta.focus}</span>
-                    <button type="button" onClick={() => startQuiz(item)}>
+                    <button type="button" onClick={() => startQuiz(item, flagshipEraId)}>
                       {result ? "もう一度学ぶ" : "10問を始める"}<span aria-hidden="true">→</span>
                     </button>
                   </article>
@@ -265,9 +276,11 @@ export default function App() {
 
       {view === "quiz" && (
         <QuizExperience
-          key={difficulty}
+          key={`${activeEraId}-${difficulty}`}
+          eraId={activeEraId}
+          eraTitle={activeEra.title}
           difficulty={difficulty}
-          onExit={() => go("home")}
+          onExit={() => go("journey")}
           onOpenMap={openMap}
           onComplete={setResults}
         />
@@ -300,8 +313,8 @@ export default function App() {
           <section className="source-catalog" aria-labelledby="source-catalog-title">
             <div className="section-heading">
               <span className="eyebrow">SOURCE CATALOG</span>
-              <h2 id="source-catalog-title">初版で参照した資料</h2>
-              <p>最終確認日はいずれも2026年8月29日です。リンク先の更新に合わせて継続確認します。</p>
+              <h2 id="source-catalog-title">参照した資料</h2>
+              <p>最終確認日は資料ごとに記録し、リンク先の更新に合わせて継続確認します。</p>
             </div>
             <div className="source-catalog__grid">
               {sources.map((source) => (

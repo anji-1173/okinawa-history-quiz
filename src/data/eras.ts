@@ -8,7 +8,7 @@ export const eras: Era[] = [
     years: "1429–1609",
     summary: "王国統一、首里と港、東アジア・東南アジアとの交流をたどります。",
     accent: "#d38a43",
-    status: "planned",
+    status: "available",
   },
   {
     id: "satsuma-era",

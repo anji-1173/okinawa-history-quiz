@@ -7,7 +7,7 @@ import QuizExperience from "./QuizExperience";
 
 const showQuiz = (difficulty: Difficulty = "beginner") => {
   const onComplete = vi.fn();
-  render(<QuizExperience difficulty={difficulty} onExit={vi.fn()} onOpenMap={vi.fn()} onComplete={onComplete} />);
+  render(<QuizExperience eraId="prefecture-war" eraTitle="沖縄県の成立から沖縄戦" difficulty={difficulty} onExit={vi.fn()} onOpenMap={vi.fn()} onComplete={onComplete} />);
   return onComplete;
 };
 const goTo = (index: number) => fireEvent.change(screen.getByRole("combobox", { name: "参加する問題" }), { target: { value: String(index) } });
