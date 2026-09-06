@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useState, type CSSProperties, type ReactElement } from "react";
 import QuizExperience from "./components/QuizExperience";
 import { difficultyMeta, eras } from "./data/eras";
 import { lessonFor } from "./data/lessons";
@@ -21,6 +21,70 @@ function WaveMark() {
       <path d="M2 20c7-8 13-8 20 0s13 8 20 0 10-8 10-8" />
       <path d="M2 31c7-8 13-8 20 0s13 8 20 0 10-8 10-8" />
       <circle cx="11" cy="7" r="4" />
+    </svg>
+  );
+}
+
+function OkinawaEmblem() {
+  const waves: ReactElement[] = [];
+  for (let row = 0; row < 5; row += 1) {
+    for (let col = 0; col < 7; col += 1) {
+      const cx = col * 44 + (row % 2 ? 22 : 0) - 22;
+      const cy = 336 + row * 18;
+      [21, 14, 7].forEach((radius, i) => {
+        waves.push(
+          <path
+            key={`${row}-${col}-${i}`}
+            d={`M${cx - radius},${cy} A${radius},${radius} 0 0 1 ${cx + radius},${cy}`}
+          />,
+        );
+      });
+    }
+  }
+  const island =
+    "M250,96 C270,124 296,156 308,200 C319,236 320,256 310,278 C298,306 288,322 270,340 " +
+    "C258,352 249,356 243,347 C235,334 240,320 231,307 C221,292 205,297 197,282 C189,268 202,251 195,237 " +
+    "C188,223 170,224 157,211 C145,199 150,187 167,184 C184,181 197,196 209,189 C221,182 214,158 221,138 " +
+    "C227,120 236,106 250,96 Z";
+  return (
+    <svg className="hero__emblem" viewBox="0 0 440 520" aria-hidden="true">
+      <defs>
+        <radialGradient id="emblem-sea" cx="50%" cy="42%" r="64%">
+          <stop offset="0%" stopColor="#0e5f66" />
+          <stop offset="100%" stopColor="#062f36" />
+        </radialGradient>
+        <clipPath id="emblem-disc">
+          <circle cx="220" cy="250" r="196" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#emblem-disc)">
+        <rect x="0" y="0" width="440" height="520" fill="url(#emblem-sea)" />
+        <g className="hero__waves" fill="none" stroke="rgba(239,187,114,.3)" strokeWidth="1.3">
+          {waves}
+        </g>
+        <path className="hero__island" d={island} />
+        <path className="hero__coast" d={island} />
+        <g className="hero__pins">
+          <circle cx="250" cy="132" r="7" />
+          <circle cx="268" cy="230" r="7" />
+          <circle cx="234" cy="308" r="7" />
+        </g>
+      </g>
+      <circle className="hero__ring hero__ring--faint" cx="220" cy="250" r="208" />
+      <circle className="hero__ring" cx="220" cy="250" r="196" />
+      <g className="hero__ticks">
+        <line x1="220" y1="46" x2="220" y2="62" />
+        <line x1="220" y1="438" x2="220" y2="454" />
+        <line x1="16" y1="250" x2="32" y2="250" />
+        <line x1="408" y1="250" x2="424" y2="250" />
+      </g>
+      <g className="hero__compass">
+        <text x="220" y="40" textAnchor="middle">北</text>
+      </g>
+      <g className="hero__seal-mark">
+        <circle cx="356" cy="392" r="30" />
+        <text x="356" y="402" textAnchor="middle">琉</text>
+      </g>
     </svg>
   );
 }
@@ -182,13 +246,7 @@ export default function App() {
               </div>
             </div>
             <div className="hero__visual" aria-hidden="true">
-              <div className="island-shape">
-                <span className="island-shape__pin island-shape__pin--1" />
-                <span className="island-shape__pin island-shape__pin--2" />
-                <span className="island-shape__pin island-shape__pin--3" />
-                <span className="island-shape__pin island-shape__pin--4" />
-              </div>
-              <div className="hero__seal">LEARN<br />WITH<br />SOURCES</div>
+              <OkinawaEmblem />
             </div>
           </section>
 
@@ -331,8 +389,6 @@ export default function App() {
 
       <footer className="site-footer">
         <div className="brand brand--footer"><WaveMark /><span><strong>しまの記憶</strong><small>沖縄歴史クイズ</small></span></div>
-        <p>史実の訂正や資料の追加提案は、GitHubリポジトリで受け付けます。</p>
-        <a href="https://github.com/anji-1173/okinawa-history-quiz" target="_blank" rel="noreferrer">GitHub ↗</a>
       </footer>
     </div>
   );

@@ -4,6 +4,7 @@ import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
 import { shuffleQuestionChoices } from "../lib/quizChoices";
 import type { Difficulty, QuizResult } from "../types";
+import Ruby from "./Ruby";
 import SourceLinks from "./SourceLinks";
 import "./quiz-navigation.css";
 
@@ -166,8 +167,8 @@ export default function QuizExperience({
         {question.sensitive && (
           <p className="sensitive-note">この問いは戦争・犠牲に関する内容を含みます。時間制限はありません。</p>
         )}
-        <span className="question-theme">{question.theme}</span>
-        <h1 id="question-title">{question.prompt}</h1>
+        <span className="question-theme"><Ruby text={question.theme} /></span>
+        <h1 id="question-title"><Ruby text={question.prompt} /></h1>
 
         <div className="choice-list" role="group" aria-label="選択肢">
           {question.choices.map((choice, choiceIndex) => {
@@ -180,11 +181,12 @@ export default function QuizExperience({
                 className={classNames.join(" ")}
                 type="button"
                 key={choice}
+                aria-label={choice}
                 disabled={answered}
                 onClick={() => choose(choiceIndex)}
               >
                 <span aria-hidden="true">{String.fromCharCode(65 + choiceIndex)}</span>
-                {choice}
+                <span><Ruby text={choice} /></span>
               </button>
             );
           })}
@@ -196,7 +198,7 @@ export default function QuizExperience({
               <span aria-hidden="true">{isCorrect ? "○" : "×"}</span>
               {isCorrect ? "正解です" : "ここを確かめましょう"}
             </strong>
-            <p>{question.explanation}</p>
+            <p><Ruby text={question.explanation} /></p>
             <SourceLinks sourceIds={question.sourceIds} />
             <div className="answer-actions">
               {question.relatedPlaceIds[0] && (
