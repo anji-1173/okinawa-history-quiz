@@ -7,7 +7,7 @@ export const eras: Era[] = [
     title: "琉球王国の成立と交易",
     years: "1429–1609",
     summary: "王国統一、首里と港、東アジア・東南アジアとの交流をたどります。",
-    accent: "#d38a43",
+    accent: "#6b8896",
     status: "available",
   },
   {
@@ -16,7 +16,7 @@ export const eras: Era[] = [
     title: "薩摩侵攻後の王国",
     years: "1609–1879",
     summary: "薩摩と中国の間で続いた王国の制度、外交、文化を考えます。",
-    accent: "#a85e45",
+    accent: "#5f8090",
     status: "planned",
   },
   {
@@ -25,7 +25,7 @@ export const eras: Era[] = [
     title: "沖縄県の成立から沖縄戦",
     years: "1879–1945",
     summary: "近代化、学童疎開、戦時行政、沖縄戦を複数の資料から学びます。",
-    accent: "#a3463b",
+    accent: "#547a8b",
     status: "available",
   },
   {
@@ -34,7 +34,7 @@ export const eras: Era[] = [
     title: "戦後の再出発",
     years: "1945–1952",
     summary: "収容から生活再建へ。住民組織と統治の始まりを見つめます。",
-    accent: "#7a7b55",
+    accent: "#4a7488",
     status: "planned",
   },
   {
@@ -43,7 +43,7 @@ export const eras: Era[] = [
     title: "米国統治と琉球政府",
     years: "1952–1972",
     summary: "琉球政府、ドル経済、基地問題、復帰運動の歩みを学びます。",
-    accent: "#447b7b",
+    accent: "#3f6f88",
     status: "planned",
   },
   {
@@ -52,7 +52,7 @@ export const eras: Era[] = [
     title: "日本復帰と制度転換",
     years: "1972–1975",
     summary: "1972年5月15日。変わった制度と残った課題を整理します。",
-    accent: "#35768a",
+    accent: "#386a86",
     status: "planned",
   },
   {
@@ -61,7 +61,7 @@ export const eras: Era[] = [
     title: "海洋博と観光・振興",
     years: "1975–1999",
     summary: "海洋博を軸に、交通、観光、地域づくりの変化をたどります。",
-    accent: "#2d718c",
+    accent: "#326485",
     status: "planned",
   },
   {
@@ -70,7 +70,7 @@ export const eras: Era[] = [
     title: "サミットから現代へ",
     years: "2000–現在",
     summary: "国際交流、世界遺産、文化継承と現代の課題を考えます。",
-    accent: "#345b78",
+    accent: "#2c5f83",
     status: "planned",
   },
 ];

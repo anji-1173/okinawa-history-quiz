@@ -272,7 +272,7 @@ export const places: Place[] = [
 ];
 
 export const categoryMeta: Record<PlaceCategory, { label: string; color: string; glyph: string }> = {
-  heritage: { label: "世界遺産", color: "#b87934", glyph: "城" },
+  heritage: { label: "世界遺産", color: "#7f8488", glyph: "城" },
   "war-site": { label: "戦争遺跡", color: "#8a4c48", glyph: "壕" },
   memorial: { label: "慰霊・記憶", color: "#62664c", glyph: "祈" },
   route: { label: "学童疎開船", color: "#2e7183", glyph: "航" },
