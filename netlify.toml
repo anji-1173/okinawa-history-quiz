@@ -1,0 +1,14 @@
+# Netlify のビルド・公開設定。
+# Netlify ダッシュボードでこのリポジトリを連携すると、この設定が自動で使われます。
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# SPA なので、どのパスへ直接アクセスされても index.html を返す。
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
