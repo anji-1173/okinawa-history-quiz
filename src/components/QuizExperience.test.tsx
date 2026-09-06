@@ -11,7 +11,11 @@ const showQuiz = (difficulty: Difficulty = "beginner") => {
   return onComplete;
 };
 const goTo = (index: number) => fireEvent.change(screen.getByRole("combobox", { name: "参加する問題" }), { target: { value: String(index) } });
-const answer = (choiceIndex: number) => fireEvent.click(within(screen.getByRole("group", { name: "選択肢" })).getAllByRole("button")[choiceIndex]);
+const choose = (choice: string) => fireEvent.click(screen.getByRole("button", { name: choice }));
+const correctChoice = (difficulty: Difficulty, index: number) => {
+  const question = questionsFor("prefecture-war", difficulty)[index];
+  return question.choices[question.correctIndex];
+};
 
 beforeEach(() => {
   window.localStorage.clear();
@@ -31,14 +35,14 @@ describe("joining a quiz partway through", () => {
     showQuiz();
     const questions = questionsFor("prefecture-war", "beginner");
     goTo(4);
-    answer(questions[4].correctIndex);
+    choose(correctChoice("beginner", 4));
     goTo(5);
     goTo(4);
     expect(within(screen.getByRole("group", { name: "選択肢" })).getAllByRole("button").every((button) => button.hasAttribute("disabled"))).toBe(true);
     expect(screen.getByText(questions[4].explanation)).toBeDefined();
     expect(screen.getByRole("status").textContent).toBe("1 / 10問 回答済み");
     goTo(9);
-    answer((questions[9].correctIndex + 1) % 4);
+    choose(questions[9].choices.find((_, index) => index !== questions[9].correctIndex)!);
     fireEvent.click(screen.getByRole("button", { name: "結果を見る" }));
     expect(screen.getByLabelText("2問中1問正解")).toBeDefined();
   });
@@ -47,7 +51,7 @@ describe("joining a quiz partway through", () => {
     saveResult({ difficulty: "beginner", score: 7, completedAt: "2026-08-29" });
     const onComplete = showQuiz();
     goTo(9);
-    answer(questionsFor("prefecture-war", "beginner")[9].correctIndex);
+    choose(correctChoice("beginner", 9));
     fireEvent.click(screen.getByRole("button", { name: "結果を見る" }));
     expect(screen.getByLabelText("1問中1問正解")).toBeDefined();
     expect(screen.getByText("今回は1問に回答しました。未回答の9問は採点に含めていません。")).toBeDefined();
@@ -60,10 +64,9 @@ describe("joining a quiz partway through", () => {
 
   it("records a full course once all questions have been answered out of order", () => {
     const onComplete = showQuiz();
-    const questions = questionsFor("prefecture-war", "beginner");
     for (const index of [9, 4, 0, 1, 2, 3, 5, 6, 7, 8]) {
       goTo(index);
-      answer(questions[index].correctIndex);
+      choose(correctChoice("beginner", index));
     }
     fireEvent.click(screen.getByRole("button", { name: "結果を見る" }));
     expect(screen.getByLabelText("10問中10問正解")).toBeDefined();
@@ -74,7 +77,7 @@ describe("joining a quiz partway through", () => {
   it("starts a new attempt with no answers after restarting a partial result", () => {
     showQuiz();
     goTo(9);
-    answer(0);
+    fireEvent.click(within(screen.getByRole("group", { name: "選択肢" })).getAllByRole("button")[0]);
     fireEvent.click(screen.getByRole("button", { name: "結果を見る" }));
     fireEvent.click(screen.getByRole("button", { name: "もう一度挑戦する" }));
     expect(screen.getByRole("status").textContent).toBe("0 / 10問 回答済み");
