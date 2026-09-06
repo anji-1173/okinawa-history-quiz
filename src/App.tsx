@@ -49,9 +49,9 @@ function OkinawaEmblem() {
   return (
     <svg className="hero__emblem" viewBox="0 0 440 520" aria-hidden="true">
       <defs>
-        <radialGradient id="emblem-sea" cx="50%" cy="42%" r="64%">
-          <stop offset="0%" stopColor="#0e5f66" />
-          <stop offset="100%" stopColor="#062f36" />
+        <radialGradient id="emblem-sea" cx="50%" cy="40%" r="66%">
+          <stop offset="0%" stopColor="#f2ebdc" />
+          <stop offset="100%" stopColor="#ddd3bf" />
         </radialGradient>
         <clipPath id="emblem-disc">
           <circle cx="220" cy="250" r="196" />
@@ -59,7 +59,7 @@ function OkinawaEmblem() {
       </defs>
       <g clipPath="url(#emblem-disc)">
         <rect x="0" y="0" width="440" height="520" fill="url(#emblem-sea)" />
-        <g className="hero__waves" fill="none" stroke="rgba(239,187,114,.3)" strokeWidth="1.3">
+        <g className="hero__waves" fill="none" stroke="rgba(31,111,139,.32)" strokeWidth="1.3">
           {waves}
         </g>
         <path className="hero__island" d={island} />
