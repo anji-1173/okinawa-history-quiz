@@ -4,6 +4,7 @@ import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
 import type { Difficulty, QuizResult } from "../types";
 import SourceLinks from "./SourceLinks";
+import "./quiz-navigation.css";
 
 interface QuizExperienceProps {
   difficulty: Difficulty;
@@ -20,41 +21,48 @@ export default function QuizExperience({
 }: QuizExperienceProps) {
   const quizQuestions = useMemo(() => questionsFor("prefecture-war", difficulty), [difficulty]);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState<(number | null)[]>(() => quizQuestions.map(() => null));
   const [finished, setFinished] = useState(false);
   const [restartKey, setRestartKey] = useState(0);
   const meta = difficultyMeta[difficulty];
   const question = quizQuestions[questionIndex];
+  const selectedIndex = answers[questionIndex];
+  const answeredCount = answers.filter((answer) => answer !== null).length;
+  const score = answers.reduce<number>((total, answer, index) => total + Number(answer === quizQuestions[index].correctIndex), 0);
+  const allAnswered = answeredCount === quizQuestions.length;
 
   const choose = (choiceIndex: number) => {
     if (selectedIndex !== null) return;
-    setSelectedIndex(choiceIndex);
-    if (choiceIndex === question.correctIndex) setScore((value) => value + 1);
+    setAnswers((current) => current.map((answer, index) => index === questionIndex ? choiceIndex : answer));
+  };
+
+  const moveToQuestion = (index: number) => {
+    setQuestionIndex(index);
+    setFinished(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const next = () => {
-    if (questionIndex === quizQuestions.length - 1) {
-      const results = saveResult({
-        difficulty,
-        score,
-        completedAt: new Date().toISOString(),
-      });
-      onComplete(results);
+    if (allAnswered || questionIndex === quizQuestions.length - 1) {
+      if (allAnswered) {
+        const results = saveResult({
+          difficulty,
+          score,
+          completedAt: new Date().toISOString(),
+        });
+        onComplete(results);
+      }
       setFinished(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    setQuestionIndex((value) => value + 1);
-    setSelectedIndex(null);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    moveToQuestion(questionIndex + 1);
   };
 
   const restart = () => {
     setQuestionIndex(0);
-    setSelectedIndex(null);
-    setScore(0);
+    setAnswers(quizQuestions.map(() => null));
     setFinished(false);
     setRestartKey((value) => value + 1);
   };
@@ -66,16 +74,24 @@ export default function QuizExperience({
           ← 時代一覧へ戻る
         </button>
         <section className="result-card" aria-labelledby="result-title">
-          <span className="eyebrow">{meta.label}・完了</span>
-          <div className="score-ring" aria-label={`10問中${score}問正解`}>
+          <span className="eyebrow">{meta.label}・{allAnswered ? "完了" : "途中参加の結果"}</span>
+          <div className="score-ring" aria-label={`${answeredCount}問中${score}問正解`}>
             <strong>{score}</strong>
-            <span>/ 10</span>
+            <span>/ {answeredCount}</span>
           </div>
-          <h1 id="result-title">{resultLabel(score)}</h1>
+          <h1 id="result-title">{allAnswered ? resultLabel(score) : "回答した問いを振り返りましょう"}</h1>
+          {!allAnswered && (
+            <p>今回は{answeredCount}問に回答しました。未回答の{quizQuestions.length - answeredCount}問は採点に含めていません。</p>
+          )}
           <p>
             正解数はゴールではありません。気になった場所を地図で開き、二つ以上の資料を読み比べてみましょう。
           </p>
           <div className="result-actions">
+            {!allAnswered && (
+              <button className="primary-button" type="button" onClick={() => moveToQuestion(answers.findIndex((answer) => answer === null))}>
+                未回答の問題を続ける
+              </button>
+            )}
             <button className="primary-button" type="button" onClick={() => onOpenMap("tsushima-maru-memorial")}>
               関連する場所を見る
             </button>
@@ -89,7 +105,7 @@ export default function QuizExperience({
   }
 
   const isCorrect = selectedIndex === question.correctIndex;
-  const progress = ((questionIndex + 1) / quizQuestions.length) * 100;
+  const progress = (answeredCount / quizQuestions.length) * 100;
 
   return (
     <main id="main-content" className="quiz-shell" key={restartKey}>
@@ -100,11 +116,34 @@ export default function QuizExperience({
         <span style={{ color: meta.color }}>{meta.label}</span>
       </div>
 
+      <section className="question-picker" aria-labelledby="question-picker-title">
+        <div>
+          <h2 id="question-picker-title">途中の問題から参加できます</h2>
+          <p id="question-picker-help">好きな問題を選んで始めましょう。回答済みの問題は、解説を読み直せます。</p>
+        </div>
+        <div className="question-picker__control">
+          <label htmlFor="question-number">参加する問題</label>
+          <select
+            id="question-number"
+            value={questionIndex}
+            aria-describedby="question-picker-help"
+            onChange={(event) => moveToQuestion(Number(event.target.value))}
+          >
+            {quizQuestions.map((item, index) => (
+              <option key={item.id} value={index}>
+                第{index + 1}問｜{item.theme}{answers[index] !== null ? "（回答済み）" : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+      </section>
+
       <section className="quiz-card" aria-labelledby="question-title">
         <div className="quiz-progress-copy">
           <span>第3時代｜沖縄県の成立から沖縄戦</span>
-          <span>{questionIndex + 1} / {quizQuestions.length}</span>
+          <span>第{questionIndex + 1}問 / 全{quizQuestions.length}問</span>
         </div>
+        <p className="quiz-answered-count" role="status">{answeredCount} / {quizQuestions.length}問 回答済み</p>
         <div className="progress-track" aria-hidden="true">
           <span style={{ width: `${progress}%`, background: meta.color }} />
         </div>
@@ -151,7 +190,7 @@ export default function QuizExperience({
                 </button>
               )}
               <button className="primary-button" type="button" onClick={next}>
-                {questionIndex === quizQuestions.length - 1 ? "結果を見る" : "次の問いへ"}
+                {allAnswered || questionIndex === quizQuestions.length - 1 ? "結果を見る" : "次の問いへ"}
               </button>
             </div>
           </div>
@@ -160,4 +199,3 @@ export default function QuizExperience({
     </main>
   );
 }
-
