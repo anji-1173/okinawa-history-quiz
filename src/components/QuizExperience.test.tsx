@@ -12,6 +12,12 @@ const showQuiz = (difficulty: Difficulty = "beginner") => {
 };
 const goTo = (index: number) => fireEvent.change(screen.getByRole("combobox", { name: "参加する問題" }), { target: { value: String(index) } });
 const choose = (choice: string) => fireEvent.click(screen.getByRole("button", { name: choice }));
+// ふりがな（<rt>）を除いた本文テキストを取り出す
+const plainText = (element: Element) => {
+  const clone = element.cloneNode(true) as HTMLElement;
+  clone.querySelectorAll("rt").forEach((node) => node.remove());
+  return clone.textContent;
+};
 const correctChoice = (difficulty: Difficulty, index: number) => {
   const question = questionsFor("prefecture-war", difficulty)[index];
   return question.choices[question.correctIndex];
@@ -27,7 +33,7 @@ describe("joining a quiz partway through", () => {
   it.each<Difficulty>(["beginner", "intermediate", "advanced"])("opens question five directly in %s", (difficulty) => {
     showQuiz(difficulty);
     goTo(4);
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(questionsFor("prefecture-war", difficulty)[4].prompt);
+    expect(plainText(screen.getByRole("heading", { level: 1 }))).toBe(questionsFor("prefecture-war", difficulty)[4].prompt);
     expect(screen.getByRole("status").textContent).toBe("0 / 10問 回答済み");
   });
 
@@ -39,7 +45,7 @@ describe("joining a quiz partway through", () => {
     goTo(5);
     goTo(4);
     expect(within(screen.getByRole("group", { name: "選択肢" })).getAllByRole("button").every((button) => button.hasAttribute("disabled"))).toBe(true);
-    expect(screen.getByText(questions[4].explanation)).toBeDefined();
+    expect(Array.from(document.querySelectorAll("p")).some((paragraph) => plainText(paragraph) === questions[4].explanation)).toBe(true);
     expect(screen.getByRole("status").textContent).toBe("1 / 10問 回答済み");
     goTo(9);
     choose(questions[9].choices.find((_, index) => index !== questions[9].correctIndex)!);
