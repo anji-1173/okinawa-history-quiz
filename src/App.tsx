@@ -41,17 +41,18 @@ function OkinawaEmblem() {
       });
     }
   }
+  // 沖縄本島のシルエット（北を上に。本部半島＝西へ、勝連半島＝東へ、中部のくびれ、広い南部）
   const island =
-    "M250,96 C270,124 296,156 308,200 C319,236 320,256 310,278 C298,306 288,322 270,340 " +
-    "C258,352 249,356 243,347 C235,334 240,320 231,307 C221,292 205,297 197,282 C189,268 202,251 195,237 " +
-    "C188,223 170,224 157,211 C145,199 150,187 167,184 C184,181 197,196 209,189 C221,182 214,158 221,138 " +
-    "C227,120 236,106 250,96 Z";
+    "M250,80 L262,110 L270,150 L268,190 L262,220 L268,232 L300,246 L322,250 L334,247 " +
+    "L316,262 L300,280 L288,297 L300,330 L292,353 L262,392 L222,404 L206,380 L214,353 " +
+    "L196,330 L205,300 L214,272 L206,247 L214,233 L211,221 L206,205 L215,188 L206,182 " +
+    "L168,190 L150,178 L157,161 L196,157 L214,150 L210,128 L226,107 L236,92 Z";
   return (
     <svg className="hero__emblem" viewBox="0 0 440 520" aria-hidden="true">
       <defs>
         <radialGradient id="emblem-sea" cx="50%" cy="40%" r="66%">
-          <stop offset="0%" stopColor="#f2ebdc" />
-          <stop offset="100%" stopColor="#ddd3bf" />
+          <stop offset="0%" stopColor="#eef0f0" />
+          <stop offset="100%" stopColor="#c9cdcf" />
         </radialGradient>
         <clipPath id="emblem-disc">
           <circle cx="220" cy="250" r="196" />
@@ -59,15 +60,15 @@ function OkinawaEmblem() {
       </defs>
       <g clipPath="url(#emblem-disc)">
         <rect x="0" y="0" width="440" height="520" fill="url(#emblem-sea)" />
-        <g className="hero__waves" fill="none" stroke="rgba(31,111,139,.32)" strokeWidth="1.3">
+        <g className="hero__waves" fill="none" stroke="rgba(74,142,166,.3)" strokeWidth="1.2">
           {waves}
         </g>
         <path className="hero__island" d={island} />
         <path className="hero__coast" d={island} />
         <g className="hero__pins">
-          <circle cx="250" cy="132" r="7" />
-          <circle cx="268" cy="230" r="7" />
-          <circle cx="234" cy="308" r="7" />
+          <circle cx="176" cy="176" r="6.5" />
+          <circle cx="272" cy="256" r="6.5" />
+          <circle cx="214" cy="338" r="6.5" />
         </g>
       </g>
       <circle className="hero__ring hero__ring--faint" cx="220" cy="250" r="208" />
