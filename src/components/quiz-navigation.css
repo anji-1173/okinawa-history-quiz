@@ -1,0 +1,24 @@
+.question-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, .8fr);
+  align-items: center;
+  gap: 20px;
+  max-width: 930px;
+  margin: 0 auto 20px;
+  padding: 22px 26px;
+  border: 1px solid rgba(11, 81, 88, .22);
+  border-radius: 12px;
+  background: #f5f8f2;
+}
+.question-picker h2 { margin: 0 0 8px; color: var(--sea); font-size: 1rem; }
+.question-picker p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.7; }
+.question-picker__control { min-width: 0; }
+.question-picker label { display: block; margin-bottom: 8px; font-size: .8rem; font-weight: 800; }
+.question-picker select { width: 100%; min-height: 48px; padding: 10px; border: 1px solid var(--sea); border-radius: 6px; color: var(--ink); background: white; font: inherit; font-size: 1rem; }
+.question-picker select:focus-visible { outline: 3px solid #f0a54f; outline-offset: 3px; }
+.quiz-answered-count { margin: 14px 0 0; color: var(--muted); font-size: .76rem; }
+.result-actions { flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .question-picker { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px 18px; }
+  .quiz-progress-copy { gap: 8px; flex-wrap: wrap; }
+}
