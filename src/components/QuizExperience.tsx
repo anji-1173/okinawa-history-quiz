@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { difficultyMeta } from "../data/eras";
 import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
+import { shuffleQuestionChoices } from "../lib/quizChoices";
 import type { Difficulty, QuizResult } from "../types";
 import SourceLinks from "./SourceLinks";
 import "./quiz-navigation.css";
@@ -19,7 +20,8 @@ export default function QuizExperience({
   onOpenMap,
   onComplete,
 }: QuizExperienceProps) {
-  const quizQuestions = useMemo(() => questionsFor("prefecture-war", difficulty), [difficulty]);
+  const sourceQuestions = useMemo(() => questionsFor("prefecture-war", difficulty), [difficulty]);
+  const [quizQuestions, setQuizQuestions] = useState(() => shuffleQuestionChoices(sourceQuestions));
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => quizQuestions.map(() => null));
   const [finished, setFinished] = useState(false);
@@ -61,8 +63,10 @@ export default function QuizExperience({
   };
 
   const restart = () => {
+    const reshuffledQuestions = shuffleQuestionChoices(sourceQuestions);
+    setQuizQuestions(reshuffledQuestions);
     setQuestionIndex(0);
-    setAnswers(quizQuestions.map(() => null));
+    setAnswers(reshuffledQuestions.map(() => null));
     setFinished(false);
     setRestartKey((value) => value + 1);
   };
