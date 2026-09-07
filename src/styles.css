@@ -285,7 +285,8 @@ rt { font-size: .52em; font-weight: 400; color: #7a7d80; letter-spacing: .02em; 
 .choice-list { display: grid; gap: 10px; }
 .choice-button { display: grid; grid-template-columns: 42px 1fr; align-items: center; min-height: 62px; padding: 9px 18px 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fff; cursor: pointer; text-align: left; transition: border-color .16s, transform .16s; }
 .choice-button:hover:not(:disabled) { border-color: var(--sea); transform: translateX(3px); }
-.choice-button > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: var(--sea); background: #eaecec; font-family: Georgia, serif; font-weight: 800; }
+.choice-button > span:first-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: var(--sea); background: #eaecec; font-family: Georgia, serif; font-weight: 800; }
+.choice-button > span:last-child { min-width: 0; line-height: 1.7; }
 .choice-button:disabled { color: var(--ink); cursor: default; opacity: 1; }
 .choice-button--correct { border-color: #2f7a68; background: #e7f2ed; }
 .choice-button--wrong { border-color: #c0453f; background: #f3e3e1; }
