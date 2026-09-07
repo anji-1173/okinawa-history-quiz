@@ -171,7 +171,7 @@ export const sources: Source[] = [
   },
   {
     id: "omoro-soshi",
-    title: "おもろさうし（琉球･沖縄関係貴重資料デジタルアーカイブ）",
+    title: "おもろさうし（琉球・沖縄関係貴重資料デジタルアーカイブ）",
     organization: "琉球大学附属図書館",
     url: "https://shimuchi.lib.u-ryukyu.ac.jp/collection/iha",
     checkedAt: "2026-09-06",
