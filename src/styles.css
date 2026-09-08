@@ -205,6 +205,12 @@ rt { font-size: .52em; font-weight: 400; color: #7a7d80; letter-spacing: .02em; 
 .difficulty-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .difficulty-picker button { padding: 14px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--ink); cursor: pointer; text-align: left; font-weight: 700; }
 .difficulty-picker button:hover { border-color: var(--sea); background: #eceeef; }
+.difficulty-picker button:disabled { cursor: default; opacity: .55; background: #eceeef; border-color: var(--line); }
+.okinawa-geography { width: min(38vw, 440px); margin: 0; }
+.okinawa-geography svg { display: block; width: 100%; height: auto; }
+.okinawa-geography figcaption { margin: 8px 12px 0; color: #e9edef; font-size: .8rem; line-height: 1.6; }
+.okinawa-geography a { color: inherit; text-decoration: underline; }
+@media (max-width: 760px) { .okinawa-geography { width: min(100%, 400px); margin: auto; } }
 .difficulty-picker button span { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; font-weight: 400; }
 .journey-card-button { margin-top: 4px; }
 .lesson-page { max-width: 1120px; margin: 0 auto; padding: 72px max(6vw, 56px) 110px; }
@@ -421,7 +427,7 @@ rt { font-size: .52em; font-weight: 400; color: #7a7d80; letter-spacing: .02em; 
   .hero__content > p { font-size: .95rem; }
   .hero__actions { align-items: stretch; flex-direction: column; }
   .hero__facts { gap: 20px; flex-wrap: wrap; margin-top: 42px; }
-  .hero__visual { position: absolute; right: -110px; bottom: -90px; width: 330px; min-height: 330px; opacity: .3; }
+  .hero__visual { position: relative; right: auto; bottom: auto; width: 100%; min-height: 0; margin-top: 36px; opacity: 1; }
   .hero__emblem { width: 320px; }
   .journey-section, .course-section, .sources-page, .map-page { padding: 72px 22px 86px; }
   .journey-picker-page { padding: 48px 22px 80px; }

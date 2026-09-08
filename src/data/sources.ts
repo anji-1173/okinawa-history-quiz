@@ -1,6 +1,11 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  { id: "okinawa-library-chronology", title: "資料年表", organization: "沖縄県立図書館", url: "https://www.library.pref.okinawa.jp/archive/contents/chronology.html", checkedAt: "2026-09-08" },
+  { id: "bunka-ryukyu-dance", title: "琉球王朝文化の華『琉球舞踊』", organization: "文化庁", url: "https://www.bunka.go.jp/prmagazine/rensai/youkoso/youkoso_015.html", checkedAt: "2026-09-08" },
+  { id: "nt-kumiodori", title: "組踊", organization: "国立劇場おきなわ", url: "https://www.nt-okinawa.or.jp/okinawan-traditional-performing-arts/kumiodori", checkedAt: "2026-09-08" },
+  { id: "naha-shikinaen", title: "識名園", organization: "那覇市", url: "https://www.city.naha.okinawa.jp/shisetsu/reisure/1007835/1003523.html", checkedAt: "2026-09-08" },
+  { id: "gsi-global-map", title: "地球地図日本（トップの海岸線図の原資料）", organization: "国土地理院", url: "https://www.gsi.go.jp/kankyochiri/gm_jpn.html", checkedAt: "2026-09-08" },
   {
     id: "okinawa-history",
     title: "歴史概要",

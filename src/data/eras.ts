@@ -17,7 +17,7 @@ export const eras: Era[] = [
     years: "1609–1879",
     summary: "薩摩と中国の間で続いた王国の制度、外交、文化を考えます。",
     accent: "#5f8090",
-    status: "planned",
+    status: "available",
   },
   {
     id: "prefecture-war",
