@@ -1,8 +1,9 @@
-import { lazy, Suspense, useEffect, useState, type CSSProperties, type ReactElement } from "react";
+import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
+import OkinawaGeography from "./components/OkinawaGeography";
 import QuizExperience from "./components/QuizExperience";
 import { difficultyMeta, eras } from "./data/eras";
 import { lessonFor } from "./data/lessons";
-import { questions } from "./data/questions";
+import { questions, questionsFor } from "./data/questions";
 import { sources } from "./data/sources";
 import { readResults } from "./lib/progress";
 import type { Difficulty, QuizResult } from "./types";
@@ -21,71 +22,6 @@ function WaveMark() {
       <path d="M2 20c7-8 13-8 20 0s13 8 20 0 10-8 10-8" />
       <path d="M2 31c7-8 13-8 20 0s13 8 20 0 10-8 10-8" />
       <circle cx="11" cy="7" r="4" />
-    </svg>
-  );
-}
-
-function OkinawaEmblem() {
-  const waves: ReactElement[] = [];
-  for (let row = 0; row < 5; row += 1) {
-    for (let col = 0; col < 7; col += 1) {
-      const cx = col * 44 + (row % 2 ? 22 : 0) - 22;
-      const cy = 336 + row * 18;
-      [21, 14, 7].forEach((radius, i) => {
-        waves.push(
-          <path
-            key={`${row}-${col}-${i}`}
-            d={`M${cx - radius},${cy} A${radius},${radius} 0 0 1 ${cx + radius},${cy}`}
-          />,
-        );
-      });
-    }
-  }
-  // 沖縄本島のシルエット（北を上に。本部半島＝西へ、勝連半島＝東へ、中部のくびれ、広い南部）
-  const island =
-    "M250,80 L262,110 L270,150 L268,190 L262,220 L268,232 L300,246 L322,250 L334,247 " +
-    "L316,262 L300,280 L288,297 L300,330 L292,353 L262,392 L222,404 L206,380 L214,353 " +
-    "L196,330 L205,300 L214,272 L206,247 L214,233 L211,221 L206,205 L215,188 L206,182 " +
-    "L168,190 L150,178 L157,161 L196,157 L214,150 L210,128 L226,107 L236,92 Z";
-  return (
-    <svg className="hero__emblem" viewBox="0 0 440 520" aria-hidden="true">
-      <defs>
-        <radialGradient id="emblem-sea" cx="50%" cy="40%" r="66%">
-          <stop offset="0%" stopColor="#eef0f0" />
-          <stop offset="100%" stopColor="#c9cdcf" />
-        </radialGradient>
-        <clipPath id="emblem-disc">
-          <circle cx="220" cy="250" r="196" />
-        </clipPath>
-      </defs>
-      <g clipPath="url(#emblem-disc)">
-        <rect x="0" y="0" width="440" height="520" fill="url(#emblem-sea)" />
-        <g className="hero__waves" fill="none" stroke="rgba(74,142,166,.3)" strokeWidth="1.2">
-          {waves}
-        </g>
-        <path className="hero__island" d={island} />
-        <path className="hero__coast" d={island} />
-        <g className="hero__pins">
-          <circle cx="176" cy="176" r="6.5" />
-          <circle cx="272" cy="256" r="6.5" />
-          <circle cx="214" cy="338" r="6.5" />
-        </g>
-      </g>
-      <circle className="hero__ring hero__ring--faint" cx="220" cy="250" r="208" />
-      <circle className="hero__ring" cx="220" cy="250" r="196" />
-      <g className="hero__ticks">
-        <line x1="220" y1="46" x2="220" y2="62" />
-        <line x1="220" y1="438" x2="220" y2="454" />
-        <line x1="16" y1="250" x2="32" y2="250" />
-        <line x1="408" y1="250" x2="424" y2="250" />
-      </g>
-      <g className="hero__compass">
-        <text x="220" y="40" textAnchor="middle">北</text>
-      </g>
-      <g className="hero__seal-mark">
-        <circle cx="356" cy="392" r="30" />
-        <text x="356" y="402" textAnchor="middle">琉</text>
-      </g>
     </svg>
   );
 }
@@ -121,6 +57,7 @@ export default function App() {
   };
 
   const startQuiz = (nextDifficulty: Difficulty, eraId: string = activeEraId) => {
+    if (questionsFor(eraId, nextDifficulty).length !== 10) return;
     setActiveEraId(eraId);
     setDifficulty(nextDifficulty);
     setView("quiz");
@@ -215,7 +152,10 @@ export default function App() {
           <section className="lesson-cta" aria-labelledby="lesson-cta-title">
             <span className="eyebrow">READY FOR A QUIZ?</span><h2 id="lesson-cta-title">問いの深さを選ぶ</h2><p>導入を踏まえて、あなたに合うコースから始めましょう。</p>
             <div className="difficulty-picker" aria-label="難易度">
-              {difficulties.map((item) => <button key={item} type="button" onClick={() => startQuiz(item)}>{difficultyMeta[item].label}<span>{difficultyMeta[item].description}</span></button>)}
+              {difficulties.map((item) => {
+                const ready = questionsFor(activeEraId, item).length === 10;
+                return <button key={item} type="button" disabled={!ready} onClick={() => startQuiz(item)}>{difficultyMeta[item].label}<span>{ready ? difficultyMeta[item].description : "準備中"}</span></button>;
+              })}
             </div>
           </section>
         </main>
@@ -246,8 +186,8 @@ export default function App() {
                 <div><strong>23</strong><span>の歴史地点</span></div>
               </div>
             </div>
-            <div className="hero__visual" aria-hidden="true">
-              <OkinawaEmblem />
+            <div className="hero__visual">
+              <OkinawaGeography />
             </div>
           </section>
 

@@ -1,6 +1,8 @@
 import type { Difficulty, Question } from "../types";
+import { satsumaQuestions } from "./satsumaQuestions";
 
 export const questions: Question[] = [
+  ...satsumaQuestions,
   {
     id: "war-b01",
     eraId: "prefecture-war",

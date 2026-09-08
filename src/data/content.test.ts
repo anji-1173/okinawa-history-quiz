@@ -7,15 +7,17 @@ import { sourceById } from "./sources";
 describe("historical content integrity", () => {
   const availableEras = eras.filter((era) => era.status === "available");
 
-  it("ships a full 30-question set (10/10/10) for every available era", () => {
+  it("publishes complete ten-question courses while allowing staged era releases", () => {
     for (const era of availableEras) {
       const eraQuestions = questions.filter((question) => question.eraId === era.id);
-      expect(eraQuestions).toHaveLength(30);
+      expect(eraQuestions.length).toBeGreaterThanOrEqual(10);
       expect(eraQuestions.filter((question) => question.difficulty === "beginner")).toHaveLength(10);
-      expect(eraQuestions.filter((question) => question.difficulty === "intermediate")).toHaveLength(10);
-      expect(eraQuestions.filter((question) => question.difficulty === "advanced")).toHaveLength(10);
+      for (const difficulty of ["intermediate", "advanced"]) {
+        expect([0, 10]).toContain(eraQuestions.filter((question) => question.difficulty === difficulty).length);
+      }
     }
-    expect(questions).toHaveLength(availableEras.length * 30);
+    expect(questions.filter(q => q.eraId === "satsuma-era")).toHaveLength(10);
+    expect(new Set(questions.map(q => q.id)).size).toBe(questions.length);
   });
 
   it("only ships questions for eras marked available", () => {
