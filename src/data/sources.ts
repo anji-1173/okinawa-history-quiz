@@ -1,6 +1,9 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  { id: "archives-edo-nobori", title: "旅人たちが撮った沖縄（江戸上り）", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/927", checkedAt: "2026-09-13" },
+  { id: "okinawa-library-textile", title: "基礎知識（琉球染織）", organization: "沖縄県立図書館", url: "https://www.library.pref.okinawa.jp/archive/contents/cat38/knowledge.html", checkedAt: "2026-09-13" },
+  { id: "ryuoki-chronology", title: "歴史年表", organization: "琉球王国交流史・近代沖縄史料デジタルアーカイブ", url: "https://ryuoki-archive.jp/zh/chronology_zh/", checkedAt: "2026-09-13" },
   { id: "okinawa-library-chronology", title: "資料年表", organization: "沖縄県立図書館", url: "https://www.library.pref.okinawa.jp/archive/contents/chronology.html", checkedAt: "2026-09-08" },
   { id: "bunka-ryukyu-dance", title: "琉球王朝文化の華『琉球舞踊』", organization: "文化庁", url: "https://www.bunka.go.jp/prmagazine/rensai/youkoso/youkoso_015.html", checkedAt: "2026-09-08" },
   { id: "nt-kumiodori", title: "組踊", organization: "国立劇場おきなわ", url: "https://www.nt-okinawa.or.jp/okinawan-traditional-performing-arts/kumiodori", checkedAt: "2026-09-08" },
