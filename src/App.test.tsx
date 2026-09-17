@@ -4,6 +4,12 @@ import App from './App';
 
 afterEach(() => { cleanup(); window.location.hash = ''; vi.restoreAllMocks(); });
 
+it('shows the actual number of released questions for a partially released era', () => {
+  window.location.hash = '';
+  render(<App />);
+  expect(screen.getByText('10問 公開中')).toBeTruthy();
+});
+
 it('lets learners start every released Satsuma course', () => {
   window.location.hash = '#journey';
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
