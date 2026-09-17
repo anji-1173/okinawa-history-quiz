@@ -35,7 +35,7 @@ export const eras: Era[] = [
     years: "1945–1952",
     summary: "収容から生活再建へ。住民組織と統治の始まりを見つめます。",
     accent: "#4a7488",
-    status: "planned",
+    status: "available",
   },
   {
     id: "us-administration",
