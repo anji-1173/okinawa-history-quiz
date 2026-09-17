@@ -16,7 +16,7 @@ describe("historical content integrity", () => {
         expect([0, 10]).toContain(eraQuestions.filter((question) => question.difficulty === difficulty).length);
       }
     }
-    expect(questions.filter(q => q.eraId === "satsuma-era")).toHaveLength(20);
+    expect(questions.filter(q => q.eraId === "satsuma-era")).toHaveLength(30);
     expect(new Set(questions.map(q => q.id)).size).toBe(questions.length);
   });
 

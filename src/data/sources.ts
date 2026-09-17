@@ -1,6 +1,9 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  { id: "archives-shijunkai", title: "1945年8月20日 沖縄諮詢会発足", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/5979", checkedAt: "2026-09-17" },
+  { id: "archives-postwar-events", title: "戦後沖縄の主な出来事", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/ryukyu_government/5495", checkedAt: "2026-09-17" },
+  { id: "archives-presidents", title: "行政主席の時代", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/9540", checkedAt: "2026-09-17" },
   { id: "archives-edo-nobori", title: "旅人たちが撮った沖縄（江戸上り）", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/927", checkedAt: "2026-09-13" },
   { id: "okinawa-library-textile", title: "基礎知識（琉球染織）", organization: "沖縄県立図書館", url: "https://www.library.pref.okinawa.jp/archive/contents/cat38/knowledge.html", checkedAt: "2026-09-13" },
   { id: "ryuoki-chronology", title: "歴史年表", organization: "琉球王国交流史・近代沖縄史料デジタルアーカイブ", url: "https://ryuoki-archive.jp/zh/chronology_zh/", checkedAt: "2026-09-13" },
