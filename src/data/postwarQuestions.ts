@@ -191,4 +191,195 @@ export const postwarQuestions: Question[] = [
     ],
     "relatedPlaceIds": []
   }
+,
+  {
+    "id": "postwar-m01",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "制度のつながり",
+    "prompt": "住民側の組織の変遷を、古い順に並べたものは？",
+    "choices": [
+      "沖縄民政府 → 沖縄諮詢会 → 琉球政府",
+      "沖縄諮詢会 → 沖縄民政府 → 琉球政府",
+      "沖縄諮詢会 → 琉球政府 → 沖縄民政府",
+      "琉球政府 → 沖縄民政府 → 沖縄諮詢会"
+    ],
+    "correctIndex": 1,
+    "explanation": "諮詢会は1945年、沖縄民政府は1946年、琉球政府は1952年に発足しました。この間には群島政府などもあり、この三組織だけで全過程を表せるわけではありません。",
+    "sourceIds": [
+      "archives-shijunkai"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m02",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "占領と行政",
+    "prompt": "1945年のニミッツ布告が示した、日本の行政権限の扱いは？",
+    "choices": [
+      "日本の権限を維持し、米軍は補給のみを担当する",
+      "日本の権限を沖縄諮詢会に委譲する",
+      "日本の権限を停止し、米軍による占領を告げる",
+      "日本の権限を維持し、知事のみを米軍が任命する"
+    ],
+    "correctIndex": 2,
+    "explanation": "布告は日本の権限停止を告げました。戦後の住民側行政の出発点は、戦前の県行政がそのまま続いた状態とは異なります。",
+    "sourceIds": [
+      "archives-postwar-events"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m03",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "住民代表の選出",
+    "prompt": "1945年8月の沖縄諮詢会発足までの手続きとして正しいものは？",
+    "choices": [
+      "収容地区の住民代表を招集し、候補者の選出を経て委員を選んだ",
+      "戦前の県会議員を招集し、全員をそのまま委員にした",
+      "各群島政府の知事が、それぞれ委員を指名した",
+      "沖縄全島の有権者が、委員長を直接選挙で選んだ"
+    ],
+    "correctIndex": 0,
+    "explanation": "収容地区から集まった住民代表による選出の過程がありました。全島の有権者による委員長の直接選挙とは区別する必要があります。",
+    "sourceIds": [
+      "archives-shijunkai"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m04",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "配給と行政",
+    "prompt": "諮詢会が配給とともに人口調査や戸籍の整備にも取り組んだことから、最も適切に読み取れるのは？",
+    "choices": [
+      "食糧の確保は米軍政府から独立して行われた",
+      "帰村は戸籍の整備が全国一律に完了してから始まった",
+      "配給を受けた住民には土地所有権も一律に認められた",
+      "生活支援と住民を把握する行政の整備が並行して進められた"
+    ],
+    "correctIndex": 3,
+    "explanation": "配給だけでなく、住民に関する記録や制度の整備も課題でした。ただし、この事業一覧だけから、手続きの順序や一律の権利付与までは判断できません。",
+    "sourceIds": [
+      "archives-shijunkai"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m05",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "政治参加",
+    "prompt": "諮詢会が取り組んだ市長・市議会議員選挙について、参政権の面で注目される点は？",
+    "choices": [
+      "行政主席の直接選挙と同時に実施したこと",
+      "女性の参政権を認めて実施したこと",
+      "群島知事を選ぶ選挙へ一本化したこと",
+      "戦前の県会議員だけに投票権を認めたこと"
+    ],
+    "correctIndex": 1,
+    "explanation": "公文書館は、婦人参政権を初めて認めた選挙として紹介しています。市の選挙と、後の行政主席公選は異なる制度です。",
+    "sourceIds": [
+      "archives-shijunkai"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m06",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "似た名称の区別",
+    "prompt": "「沖縄民政府」と「米国民政府」を区別する説明として正しいものは？",
+    "choices": [
+      "前者は米国側、後者は住民側の機構である",
+      "前者は立法のみ、後者は住民側の行政のみを担当した",
+      "前者は住民側の行政機構、後者は米国側の統治機構である",
+      "前者は沖縄群島、後者は宮古・八重山だけを担当した"
+    ],
+    "correctIndex": 2,
+    "explanation": "名称に同じ「民政府」が含まれていても、統治の主体が違います。組織名だけでなく、誰の側の機構かを確かめることが重要です。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m07",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "統合の意味",
+    "prompt": "1952年の琉球政府発足によって変わった、行政の地理的な単位は？",
+    "choices": [
+      "群島別の統治から、四群島を統括する中央政府へ移った",
+      "沖縄群島の行政を、奄美・宮古・八重山の三政府へ分割した",
+      "四群島政府を残したまま、外交だけを日本政府へ移した",
+      "沖縄と宮古だけを統合し、奄美と八重山を統合対象から外した"
+    ],
+    "correctIndex": 0,
+    "explanation": "琉球政府は奄美・沖縄・宮古・八重山を統括する機構として創設されました。中央政府の設置は、米国による管理の終了を意味しません。",
+    "sourceIds": [
+      "archives-postwar-events"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m08",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "自治の範囲",
+    "prompt": "琉球政府が立法・行政・司法の三権を備えたことを説明する際、併せて述べる必要がある事実は？",
+    "choices": [
+      "三権のうち司法だけは戦前の沖縄県に属していた",
+      "三権の設置によって日本政府の施政権が回復した",
+      "三権は米国民政府を監督するために設けられた",
+      "三権を備えていても米国民政府の管理下にあった"
+    ],
+    "correctIndex": 3,
+    "explanation": "政府の内部組織と、その政府を取り巻く統治上の制約は別の問題です。三権の存在だけで完全な自治を推定することはできません。",
+    "sourceIds": [
+      "archives-postwar-events"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m09",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "史料の年代",
+    "prompt": "1948年から1952年の暮らしを調べる際、当時の通貨として確認すべきものは？",
+    "choices": [
+      "1958年に導入された米ドル",
+      "1948年から使われたB型軍票",
+      "復帰に伴って導入された日本円",
+      "戦前の琉球王国が発行した琉球通宝"
+    ],
+    "correctIndex": 1,
+    "explanation": "この時期はB円の使用期に当たります。米国統治下だから米ドルだったと決めつけず、記録が作られた年を確かめましょう。",
+    "sourceIds": [
+      "archives-postwar-events"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-m10",
+    "eraId": "postwar-restart",
+    "difficulty": "intermediate",
+    "theme": "制度と人物",
+    "prompt": "1946年の諮詢会から沖縄民政府への移行について、制度と人物の両方を捉えた説明は？",
+    "choices": [
+      "組織名は変わらず、委員長だけが交代した",
+      "諮詢会を存続させたまま、委員長を米国民政府長官に任命した",
+      "組織は移行し、志喜屋孝信は委員長から知事に任命された",
+      "組織は移行し、初代知事は住民による直接選挙で選ばれた"
+    ],
+    "correctIndex": 2,
+    "explanation": "諮詢会は解消され沖縄民政府が発足しました。一方、志喜屋孝信が知事に任命されており、組織の変更と人物の継続を分けて見ることができます。",
+    "sourceIds": [
+      "archives-shijunkai"
+    ],
+    "relatedPlaceIds": []
+  }
 ];
