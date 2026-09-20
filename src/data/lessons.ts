@@ -13,7 +13,7 @@ export interface EraLesson {
 
 export const lessons: Record<string, EraLesson> = {
   "postwar-restart": {
-    brief: "戦後の生活再建と、住民側の行政機構の歩みをたどります。沖縄民政府と米国民政府は別の組織です。名称・年代・役割を整理してから初級編に進みましょう。",
+    brief: "戦後の生活再建と、住民側の行政機構の歩みをたどります。初級10問で名称・年代を、中級10問で制度の違い・生活再建・自治の範囲を考えましょう。沖縄民政府と米国民政府は別の組織です。",
     timelineTitle: "生活再建から琉球政府の発足へ",
     steps: [
       { number: "01", period: "1945", title: "諮詢会と生活再建", body: "石川で沖縄諮詢会が発足。食糧配給、帰村、教育・衛生などの課題に取り組みます。" },
