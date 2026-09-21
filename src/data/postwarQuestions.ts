@@ -382,4 +382,195 @@ export const postwarQuestions: Question[] = [
     ],
     "relatedPlaceIds": []
   }
+,
+  {
+    "id": "postwar-a01",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "政府の権限",
+    "prompt": "資料Aは琉球政府の三権を、資料BはUSCARによる権限の管理を説明しています。両方を踏まえた理解は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "三権の設置は、USCARからの完全な独立を示す",
+      "三権はUSCAR内部の部署を指している",
+      "政府の組織と、その権限への制約を併せて捉える",
+      "USCARの管理は、琉球政府設立前だけを指す"
+    ],
+    "correctIndex": 2,
+    "explanation": "機構の整備だけでは自治の範囲は決まりません。管理関係も読む必要があります。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a02",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "政府の併存",
+    "prompt": "資料Aでは四群島政府の活動、資料Bでは臨時中央政府の活動が記録されています。同じ時期の記録がある理由は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "統合まで両者が併存していた",
+      "臨時中央政府は四群島政府の総称だった",
+      "四群島政府は臨時中央政府の廃止後に設置された",
+      "臨時中央政府は沖縄群島だけを改称したものだった"
+    ],
+    "correctIndex": 0,
+    "explanation": "統合準備の時期には複数の機構が併存しました。組織名の違いだけで年代の矛盾とは判断できません。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a03",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "二つの4月",
+    "prompt": "資料Aの1952年4月1日は琉球政府発足、資料Bの同月28日は平和条約発効を示します。適切な区別は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "政府発足と施政権返還は同じ月に完了した",
+      "条約発効で琉球政府が廃止された",
+      "政府発足は条約発効後の措置だった",
+      "政府の発足と条約の発効は別の出来事である"
+    ],
+    "correctIndex": 3,
+    "explanation": "日付の近い出来事でも制度上の意味は異なります。条約発効後も米国の施政権が続きました。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a04",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "役職と人物",
+    "prompt": "資料Aに臨時中央政府の行政主席・比嘉秀平、資料Bに琉球政府の初代行政主席・比嘉秀平とあります。どう整理する？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "同じ人物なので組織も同一とする",
+      "人物の継続と組織の移行を区別する",
+      "片方は志喜屋孝信の誤記とする",
+      "二つの役職は常に兼任されたとする"
+    ],
+    "correctIndex": 1,
+    "explanation": "同じ人物が続けて就いたことと、機構が同一であることは別です。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a05",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "名称と統治",
+    "prompt": "資料Aに1950年のUSCAR設立、資料Bに軍政の実質の継続が記されています。両立する解釈は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "民政府という名称だけで軍事的支配の終了とはいえない",
+      "USCAR設立で住民側政府が米軍を指揮した",
+      "民政府への改称によって日本の施政権が戻った",
+      "軍政継続の記述は1950年以前にしか当てはまらない"
+    ],
+    "correctIndex": 0,
+    "explanation": "名称の変更と権力関係の変化は、別々に検討します。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a06",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "任命と選挙",
+    "prompt": "資料Aは1952年の主席任命、資料Bは将来の選挙制への移行を想定した規定を示します。当時の制度の説明は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "規定があるため1952年から直接選挙だった",
+      "任命された主席は地方選挙にも投票できなかった",
+      "将来の選挙制の規定と、発足時の任命制を区別する",
+      "任命の記録は琉球政府発足後には存在しない"
+    ],
+    "correctIndex": 2,
+    "explanation": "規定が想定する将来と、その時点の運用を混同しないことが大切です。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a07",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "行政の必要性",
+    "prompt": "資料Aは収容所からの帰還と市町村の復活、資料Bは1946年の統括機構の設置を説明します。つながりとして適切なのは？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "帰還は統括機構を不要にした",
+      "統括機構の設置で市町村の復活を取り消した",
+      "市町村の復活によって米軍政府の任命権が消えた",
+      "地域行政の再開に伴い、それらをまとめる機構が必要になった"
+    ],
+    "correctIndex": 3,
+    "explanation": "生活の場と地方行政の再建が、広域の行政整備にもつながりました。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a08",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "史料の役割",
+    "prompt": "資料Aは政府設置を定める布告、資料Bは住民側機構の会議録です。自治の実態を調べる読み方は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "布告だけで住民の受け止めまで判断する",
+      "制度上の権限と実際の議論を照合する",
+      "会議録だけで布告の法的効力を判断する",
+      "同じ時代の資料なので内容の違いを無視する"
+    ],
+    "correctIndex": 1,
+    "explanation": "制度を定める資料と運用を記録する資料は、異なる側面を示します。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a09",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "責任の所在",
+    "prompt": "資料Aは民政府の長を知事と記し、資料Bはその任命と軍政副長官への責任を記します。役職名からの早合点を防ぐには？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "現在の県知事と同じ権限だったとする",
+      "住民側機構の長なので住民による公選だったとする",
+      "名称に加え、選び方と責任を負う相手を確かめる",
+      "知事という名称があるため軍政は終わったとする"
+    ],
+    "correctIndex": 2,
+    "explanation": "同じ役職名でも時代によって位置づけは異なります。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  },
+  {
+    "id": "postwar-a10",
+    "eraId": "postwar-restart",
+    "difficulty": "advanced",
+    "theme": "発足と解消",
+    "prompt": "資料Aは1952年の琉球政府設立、資料Bは四群島政府と臨時中央政府の解消を示します。制度移行の説明は？（資料A・Bは公文書館の解説を学習用に要約）",
+    "choices": [
+      "既存機構を統合して新しい政府を設けた",
+      "四群島政府の上に臨時中央政府を新設した",
+      "琉球政府を四群島政府へ分割した",
+      "米国民政府を琉球政府に改称した"
+    ],
+    "correctIndex": 0,
+    "explanation": "新設だけでなく、どの機構が解消されたかを見ると統合の内容を捉えられます。",
+    "sourceIds": [
+      "archives-presidents"
+    ],
+    "relatedPlaceIds": []
+  }
 ];
