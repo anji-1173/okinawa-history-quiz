@@ -209,7 +209,10 @@ export default function App() {
                     <h3>{era.title}</h3>
                     <p>{era.summary}</p>
                     {era.status === "available" ? (
-                      <span className="status-pill status-pill--available">{questions.filter((question) => question.eraId === era.id).length}問 公開中</span>
+                      <>
+                        <span className="status-pill status-pill--available">{questions.filter((question) => question.eraId === era.id).length}問 公開中</span>
+                        <button className="primary-button journey-card-button" type="button" onClick={() => openLesson(era.id)}>この時代のクイズへ →</button>
+                      </>
                     ) : (
                       <span className="status-pill">準備中</span>
                     )}
