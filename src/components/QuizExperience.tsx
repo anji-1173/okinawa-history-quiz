@@ -3,6 +3,7 @@ import { difficultyMeta, eras } from "../data/eras";
 import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
 import { shuffleQuestionChoices } from "../lib/quizChoices";
+import { playFeedbackSound } from "../lib/soundFeedback";
 import type { Difficulty, QuizResult } from "../types";
 import Ruby from "./Ruby";
 import SourceLinks from "./SourceLinks";
@@ -45,6 +46,7 @@ export default function QuizExperience({
 
   const choose = (choiceIndex: number) => {
     if (selectedIndex !== null) return;
+    playFeedbackSound(choiceIndex === question.correctIndex ? "correct" : "wrong");
     setAnswers((current) => current.map((answer, index) => index === questionIndex ? choiceIndex : answer));
   };
 
