@@ -49,6 +49,7 @@ export default function QuizExperience({
   const playBackgroundMusic = () => {
     const audio = backgroundAudioRef.current;
     if (!audio) return;
+    audio.volume = 0.14;
     void Promise.resolve(audio.play()).then(() => setBgmPlaying(true)).catch(() => setBgmPlaying(false));
   };
 

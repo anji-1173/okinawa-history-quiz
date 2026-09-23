@@ -64,7 +64,7 @@ function audioElementUrl(kind: FeedbackKind) {
 function playWithAudioElement(kind: FeedbackKind) {
   if (typeof Audio === "undefined") return;
   const audio = new Audio(audioElementUrl(kind));
-  audio.volume = 0.7;
+  audio.volume = 0.95;
   void audio.play().catch(() => undefined);
 }
 
