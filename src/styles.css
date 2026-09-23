@@ -281,6 +281,10 @@ rt { font-size: .52em; font-weight: 400; color: #7a7d80; letter-spacing: .02em; 
 
 .quiz-shell { min-height: calc(100vh - 76px); padding: 54px max(7vw, 48px) 90px; background: #e6e8e8; }
 .quiz-topline { display: flex; justify-content: space-between; align-items: center; max-width: 930px; margin: 0 auto 24px; font-size: .8rem; font-weight: 800; }
+.quiz-topline__actions { display: flex; align-items: center; gap: 12px; }
+.bgm-toggle { border: 1px solid rgba(11, 81, 88, .34); border-radius: 999px; padding: 7px 11px; color: var(--sea); background: #f5f8f2; font: inherit; font-size: .72rem; font-weight: 800; cursor: pointer; }
+.bgm-toggle:hover { background: #e5f0e9; }
+.bgm-toggle:focus-visible { outline: 3px solid #f0a54f; outline-offset: 3px; }
 .quiz-card { max-width: 930px; margin: 0 auto; padding: clamp(28px, 5vw, 62px); border-radius: 12px; background: var(--paper); box-shadow: var(--shadow); }
 .quiz-progress-copy { display: flex; justify-content: space-between; color: var(--muted); font-size: .76rem; font-weight: 700; }
 .progress-track { height: 5px; margin: 12px 0 34px; overflow: hidden; border-radius: 9px; background: #e5e7e7; }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { difficultyMeta, eras } from "../data/eras";
 import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
@@ -36,6 +36,8 @@ export default function QuizExperience({
   const [answers, setAnswers] = useState<(number | null)[]>(() => quizQuestions.map(() => null));
   const [finished, setFinished] = useState(false);
   const [restartKey, setRestartKey] = useState(0);
+  const [bgmPlaying, setBgmPlaying] = useState(false);
+  const backgroundAudioRef = useRef<HTMLAudioElement>(null);
   const meta = difficultyMeta[difficulty];
   const eraNumber = eras.find((era) => era.id === eraId)?.number ?? "";
   const question = quizQuestions[questionIndex];
@@ -43,6 +45,27 @@ export default function QuizExperience({
   const answeredCount = answers.filter((answer) => answer !== null).length;
   const score = answers.reduce<number>((total, answer, index) => total + Number(answer === quizQuestions[index].correctIndex), 0);
   const allAnswered = answeredCount === quizQuestions.length;
+
+  const playBackgroundMusic = () => {
+    const audio = backgroundAudioRef.current;
+    if (!audio) return;
+    void Promise.resolve(audio.play()).then(() => setBgmPlaying(true)).catch(() => setBgmPlaying(false));
+  };
+
+  const pauseBackgroundMusic = () => {
+    backgroundAudioRef.current?.pause();
+    setBgmPlaying(false);
+  };
+
+  useEffect(() => {
+    playBackgroundMusic();
+    return () => {
+      const audio = backgroundAudioRef.current;
+      if (!audio) return;
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   const choose = (choiceIndex: number) => {
     if (selectedIndex !== null) return;
@@ -127,11 +150,17 @@ export default function QuizExperience({
 
   return (
     <main id="main-content" className="quiz-shell" key={restartKey}>
+      <audio ref={backgroundAudioRef} loop preload="metadata" src={`${import.meta.env.BASE_URL}audio/okinawa-quiz-background.mp3`} />
       <div className="quiz-topline">
         <button className="text-button" type="button" onClick={onExit}>
           ← 時代一覧へ戻る
         </button>
-        <span style={{ color: meta.color }}>{meta.label}</span>
+        <div className="quiz-topline__actions">
+          <button className="bgm-toggle" type="button" onClick={bgmPlaying ? pauseBackgroundMusic : playBackgroundMusic} aria-pressed={bgmPlaying}>
+            {bgmPlaying ? "♪ BGMを止める" : "♪ BGMを流す"}
+          </button>
+          <span style={{ color: meta.color }}>{meta.label}</span>
+        </div>
       </div>
 
       <section className="question-picker" aria-labelledby="question-picker-title">
