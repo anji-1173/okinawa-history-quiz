@@ -4,6 +4,19 @@ import App from './App';
 
 afterEach(() => { cleanup(); window.location.hash = ''; vi.restoreAllMocks(); });
 
+it.each([
+  ['中級編', '高等弁務官が立法や予算を覆す権限を持ったため'],
+  ['上級編', '住民側の政府機構と米国側の優越的権限が併存した'],
+])('opens the US administration %s course', (course, answer) => {
+  window.location.hash = '#journey';
+  vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  render(<App />);
+  const card = screen.getByRole('heading', { name: '米国統治と琉球政府' }).closest('article')!;
+  fireEvent.click(within(card).getByRole('button'));
+  fireEvent.click(screen.getByRole('button', { name: new RegExp(course) }));
+  expect(screen.getByRole('button', { name: answer })).toBeTruthy();
+});
+
 it('shows the actual number of released questions for a partially released era', () => {
   window.location.hash = '';
   render(<App />);
