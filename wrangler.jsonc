@@ -1,0 +1,14 @@
+// Cloudflare で公開するための設定。
+// デプロイ時に組み立て(pnpm build)を行い、できあがった dist を配信する。
+// CF_PAGES=1 を付けると、ルート(/)配信用に組み立てる(vite.config.ts 参照)。
+{
+  "name": "okinawa-history-quiz",
+  "compatibility_date": "2026-09-01",
+  "build": {
+    "command": "CF_PAGES=1 pnpm build"
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
