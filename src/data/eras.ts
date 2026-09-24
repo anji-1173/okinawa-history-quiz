@@ -44,7 +44,7 @@ export const eras: Era[] = [
     years: "1952–1972",
     summary: "琉球政府、ドル経済、基地問題、復帰運動の歩みを学びます。",
     accent: "#3f6f88",
-    status: "planned",
+    status: "available",
   },
   {
     id: "reversion",
