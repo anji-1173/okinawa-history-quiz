@@ -1,6 +1,10 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  { id: "archives-1967", title: "1967年の出来事（教公二法・海外移住業務）", organization: "沖縄県公文書館", url: "https://www3.archives.pref.okinawa.jp/GRI/histories/1967/", checkedAt: "2026-09-24" },
+  { id: "archives-yara-inauguration", title: "1968年12月1日 初の公選行政主席に就任", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4565", checkedAt: "2026-09-24" },
+  { id: "archives-reversion-road", title: "日本復帰への道", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/934", checkedAt: "2026-09-24" },
+  { id: "archives-reversion-petition", title: "復帰措置に関する建議書", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/ryukyu_government/13293", checkedAt: "2026-09-24" },
   { id: "archives-shijunkai", title: "1945年8月20日 沖縄諮詢会発足", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/5979", checkedAt: "2026-09-17" },
   { id: "archives-postwar-events", title: "戦後沖縄の主な出来事", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/ryukyu_government/5495", checkedAt: "2026-09-17" },
   { id: "archives-presidents", title: "行政主席の時代", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/9540", checkedAt: "2026-09-17" },
