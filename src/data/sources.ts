@@ -1,6 +1,9 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  { id: "archives-reversion-ceremony", title: "1972年5月15日 沖縄県知事として沖縄復帰記念式典へ", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4557", checkedAt: "2026-09-25" },
+  { id: "archives-730", title: "1978年7月30日 7・30交通方法変更", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4780", checkedAt: "2026-09-25" },
+  { id: "archives-tourism-history", title: "沖縄観光のあゆみ", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/10134", checkedAt: "2026-09-25" },
   { id: "archives-1967", title: "1967年の出来事（教公二法・海外移住業務）", organization: "沖縄県公文書館", url: "https://www3.archives.pref.okinawa.jp/GRI/histories/1967/", checkedAt: "2026-09-24" },
   { id: "archives-yara-inauguration", title: "1968年12月1日 初の公選行政主席に就任", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4565", checkedAt: "2026-09-24" },
   { id: "archives-reversion-road", title: "日本復帰への道", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/934", checkedAt: "2026-09-24" },

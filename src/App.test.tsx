@@ -4,6 +4,25 @@ import App from './App';
 
 afterEach(() => { cleanup(); window.location.hash = ''; vi.restoreAllMocks(); });
 
+it('opens reversion beginner while keeping unreleased courses disabled', () => {
+  window.location.hash = '#journey';
+  vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  render(<App />);
+  const card = screen.getByRole('heading', { name: '日本復帰と制度転換' }).closest('article')!;
+  fireEvent.click(within(card).getByRole('button'));
+  expect((screen.getByRole('button', { name: /中級編/ }) as HTMLButtonElement).disabled).toBe(true);
+  expect((screen.getByRole('button', { name: /上級編/ }) as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(screen.getByRole('button', { name: /初級編/ }));
+  expect(screen.getByRole('button', { name: '1972年5月15日' })).toBeTruthy();
+});
+
+it('shows ten released questions on the reversion home card', () => {
+  window.location.hash = '';
+  render(<App />);
+  const card = screen.getByRole('heading', { name: '日本復帰と制度転換' }).closest('article')!;
+  expect(within(card).getByText('10問 公開中')).toBeTruthy();
+});
+
 it.each([
   ['中級編', '高等弁務官が立法や予算を覆す権限を持ったため'],
   ['上級編', '住民側の政府機構と米国側の優越的権限が併存した'],

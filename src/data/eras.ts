@@ -53,7 +53,7 @@ export const eras: Era[] = [
     years: "1972–1975",
     summary: "1972年5月15日。変わった制度と残った課題を整理します。",
     accent: "#386a86",
-    status: "planned",
+    status: "available",
   },
   {
     id: "expo-tourism",
