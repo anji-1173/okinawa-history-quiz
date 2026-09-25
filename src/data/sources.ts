@@ -1,6 +1,20 @@
 import type { Source } from "../types";
 
 export const sources: Source[] = [
+  {"id":"archives-expo-opening","title":"1975年7月20日 沖縄国際海洋博覧会開幕","organization":"沖縄県公文書館","url":"https://www.archives.pref.okinawa.jp/news/that_day/4786","checkedAt":"2026-09-25"},
+  {"id":"archives-expo-records","title":"沖縄国際海洋博覧会協力局文書","organization":"沖縄県公文書館","url":"https://www.archives.pref.okinawa.jp/prefecture_document/2317","checkedAt":"2026-09-25"},
+  {"id":"ocean-park-history","title":"海洋博公園の歴史","organization":"沖縄美ら島財団","url":"https://oki-park.jp/kaiyohaku/history","checkedAt":"2026-09-25"},
+  {"id":"peace-purpose","title":"平和の礎 建設の趣旨・基本理念","organization":"沖縄県","url":"https://www.pref.okinawa.lg.jp/heiwakichi/jinken/1008269/1008287/1008288/1008293.html","checkedAt":"2026-09-25"},
+  {"id":"peace-inscription","title":"平和の礎 刻銘の基本方針","organization":"沖縄県","url":"https://www.pref.okinawa.lg.jp/heiwakichi/jinken/1008269/1008287/1008288/1008289.html","checkedAt":"2026-09-25"},
+  {"id":"kume-uchinanchu","title":"世界のウチナーンチュ大会・開催一覧","organization":"久米島町","url":"https://www.town.kumejima.okinawa.jp/docs/okinawa-world/","checkedAt":"2026-09-25"},
+  {"id":"mofa-okinawa-summit","title":"九州・沖縄サミット 首脳会合","organization":"外務省","url":"https://www.mofa.go.jp/mofaj/gaiko/summit/ko_2000/outline/jp/okinawa/oki0501.html","checkedAt":"2026-09-25"},
+  {"id":"mofa-it-charter","title":"グローバルな情報社会に関する沖縄憲章","organization":"外務省","url":"https://www.mofa.go.jp/mofaj/gaiko/summit/ko_2000/it1.html","checkedAt":"2026-09-25"},
+  {"id":"yuirail-history","title":"沿革","organization":"沖縄都市モノレール","url":"https://yui-rail.co.jp/company/history/","checkedAt":"2026-09-25"},
+  {"id":"unesco-kumiodori","title":"Kumiodori, traditional Okinawan musical theatre","organization":"UNESCO","url":"https://ich.unesco.org/en/RL/kumiodori-traditional-okinawan-musical-theatre-00405","checkedAt":"2026-09-25"},
+  {"id":"unesco-islands","title":"Amami-Oshima, Tokunoshima, Northern Okinawa and Iriomote","organization":"UNESCO World Heritage Centre","url":"https://whc.unesco.org/en/list/1574/","checkedAt":"2026-09-25"},
+  {"id":"okinawa-language","title":"しまくとぅばアーカイブ","organization":"沖縄県","url":"https://www.pref.okinawa.lg.jp/bunkakoryu/bunkageijutsu/1022484/1009624.html","checkedAt":"2026-09-25"},
+  {"id":"shuri-revival","title":"首里城復興へのあゆみ","organization":"沖縄美ら島財団","url":"https://oki-park.jp/shurijo/fukkou/","checkedAt":"2026-09-25"},
+  {"id":"shuri-visible-revival","title":"見せる復興","organization":"沖縄美ら島財団","url":"https://oki-park.jp/shurijo/highlights/","checkedAt":"2026-09-25"},
   { id: "archives-reversion-ceremony", title: "1972年5月15日 沖縄県知事として沖縄復帰記念式典へ", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4557", checkedAt: "2026-09-25" },
   { id: "archives-730", title: "1978年7月30日 7・30交通方法変更", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/news/that_day/4780", checkedAt: "2026-09-25" },
   { id: "archives-tourism-history", title: "沖縄観光のあゆみ", organization: "沖縄県公文書館", url: "https://www.archives.pref.okinawa.jp/event_information/past_exhibitions/10134", checkedAt: "2026-09-25" },

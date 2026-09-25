@@ -51,7 +51,10 @@ export interface Place {
 }
 
 export interface QuizResult {
+  eraId: string;
   difficulty: Difficulty;
   score: number;
   completedAt: string;
 }
+
+export type QuizResults = Record<string, QuizResult>;

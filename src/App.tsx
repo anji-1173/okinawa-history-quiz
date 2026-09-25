@@ -5,8 +5,8 @@ import { difficultyMeta, eras } from "./data/eras";
 import { lessonFor } from "./data/lessons";
 import { questions, questionsFor } from "./data/questions";
 import { sources } from "./data/sources";
-import { readResults } from "./lib/progress";
-import type { Difficulty, QuizResult } from "./types";
+import { courseKey, hasLegacyResults, readResults } from "./lib/progress";
+import type { Difficulty, QuizResults } from "./types";
 
 type View = "home" | "journey" | "lesson" | "quiz" | "map" | "sources";
 
@@ -33,7 +33,7 @@ export default function App() {
   });
   const [difficulty, setDifficulty] = useState<Difficulty>("beginner");
   const [activeEraId, setActiveEraId] = useState<string>(firstAvailableEraId);
-  const [results, setResults] = useState<Partial<Record<Difficulty, QuizResult>>>(() => readResults());
+  const [results, setResults] = useState<QuizResults>(() => readResults());
   const [initialPlaceId, setInitialPlaceId] = useState<string | undefined>();
 
   const activeEra = eras.find((era) => era.id === activeEraId) ?? eras[0];
@@ -77,7 +77,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const completedCourses = difficulties.filter((item) => results[item]).length;
+  const completedCourses = Object.keys(results).length;
+  const totalCourses = availableEras.reduce((total, era) => total + difficulties.filter(level => questionsFor(era.id, level).length === 10).length, 0);
 
   return (
     <div className="app-shell">
@@ -103,7 +104,7 @@ export default function App() {
         </nav>
         {view === "sources" && <button className="header-return-quiz" type="button" onClick={() => startQuiz(difficulty)}>クイズへ戻る →</button>}
         <button className="header-progress" type="button" onClick={() => go("home")}>
-          <span>{completedCourses}</span> / 3 コース
+          <span>{completedCourses}</span> / {totalCourses} コース
         </button>
       </header>
 
@@ -154,7 +155,8 @@ export default function App() {
             <div className="difficulty-picker" aria-label="難易度">
               {difficulties.map((item) => {
                 const ready = questionsFor(activeEraId, item).length === 10;
-                return <button key={item} type="button" disabled={!ready} onClick={() => startQuiz(item)}>{difficultyMeta[item].label}<span>{ready ? difficultyMeta[item].description : "準備中"}</span></button>;
+                const result = results[courseKey(activeEraId, item)];
+                return <button key={item} type="button" disabled={!ready} onClick={() => startQuiz(item)}>{difficultyMeta[item].label}<span>{ready ? difficultyMeta[item].description : "準備中"}{result ? ` · 最高 ${result.score} / 10` : ""}</span></button>;
               })}
             </div>
           </section>
@@ -195,7 +197,8 @@ export default function App() {
             <div className="section-heading">
               <span className="eyebrow">THE EIGHT ERAS</span>
               <h2 id="journey-title">八つの時代を、一本の物語に。</h2>
-              <p>公開中の時代から挑戦できます。残る時代も同じ型で順次追加します。</p>
+              <p>全8時代・各30問を公開しています。好きな時代・難易度から挑戦できます。</p>
+              {hasLegacyResults() && <p>旧版の成績は時代情報がないため、端末内に残したまま新しい24コースの記録とは分けています。</p>}
             </div>
 
             <div className="era-timeline">
@@ -237,7 +240,7 @@ export default function App() {
             <div className="course-grid">
               {difficulties.map((item, index) => {
                 const meta = difficultyMeta[item];
-                const result = results[item];
+                const result = results[courseKey(flagshipEraId, item)];
                 return (
                   <article className="course-card" key={item} style={{ "--course-color": meta.color } as CSSProperties}>
                     <div className="course-card__topline">

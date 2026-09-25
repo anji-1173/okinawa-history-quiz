@@ -4,23 +4,23 @@ import App from './App';
 
 afterEach(() => { cleanup(); window.location.hash = ''; vi.restoreAllMocks(); });
 
-it('opens reversion beginner while keeping unreleased courses disabled', () => {
+it('opens reversion beginner with all courses available', () => {
   window.location.hash = '#journey';
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
   render(<App />);
   const card = screen.getByRole('heading', { name: '日本復帰と制度転換' }).closest('article')!;
   fireEvent.click(within(card).getByRole('button'));
-  expect((screen.getByRole('button', { name: /中級編/ }) as HTMLButtonElement).disabled).toBe(true);
-  expect((screen.getByRole('button', { name: /上級編/ }) as HTMLButtonElement).disabled).toBe(true);
+  expect((screen.getByRole('button', { name: /中級編/ }) as HTMLButtonElement).disabled).toBe(false);
+  expect((screen.getByRole('button', { name: /上級編/ }) as HTMLButtonElement).disabled).toBe(false);
   fireEvent.click(screen.getByRole('button', { name: /初級編/ }));
   expect(screen.getByRole('button', { name: '1972年5月15日' })).toBeTruthy();
 });
 
-it('shows ten released questions on the reversion home card', () => {
+it('shows thirty released questions on the reversion home card', () => {
   window.location.hash = '';
   render(<App />);
   const card = screen.getByRole('heading', { name: '日本復帰と制度転換' }).closest('article')!;
-  expect(within(card).getByText('10問 公開中')).toBeTruthy();
+  expect(within(card).getByText('30問 公開中')).toBeTruthy();
 });
 
 it.each([

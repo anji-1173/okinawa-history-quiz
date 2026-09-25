@@ -26,6 +26,8 @@ const correctChoice = (difficulty: Difficulty, index: number) => {
 beforeEach(() => {
   window.localStorage.clear();
   vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+  vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
+  vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
 });
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
@@ -54,7 +56,7 @@ describe("joining a quiz partway through", () => {
   });
 
   it("counts only attempted questions and leaves existing course records intact", () => {
-    saveResult({ difficulty: "beginner", score: 7, completedAt: "2026-08-29" });
+    saveResult({ eraId: "prefecture-war", difficulty: "beginner", score: 7, completedAt: "2026-08-29" });
     const onComplete = showQuiz();
     goTo(9);
     choose(correctChoice("beginner", 9));
@@ -62,7 +64,7 @@ describe("joining a quiz partway through", () => {
     expect(screen.getByLabelText("1問中1問正解")).toBeDefined();
     expect(screen.getByText("今回は1問に回答しました。未回答の9問は採点に含めていません。")).toBeDefined();
     expect(onComplete).not.toHaveBeenCalled();
-    expect(readResults().beginner?.score).toBe(7);
+    expect(readResults()["prefecture-war:beginner"]?.score).toBe(7);
     fireEvent.click(screen.getByRole("button", { name: "未回答の問題を続ける" }));
     expect((screen.getByRole("combobox") as HTMLSelectElement).value).toBe("0");
     expect(screen.getByRole("status").textContent).toBe("1 / 10問 回答済み");
@@ -76,7 +78,7 @@ describe("joining a quiz partway through", () => {
     }
     fireEvent.click(screen.getByRole("button", { name: "結果を見る" }));
     expect(screen.getByLabelText("10問中10問正解")).toBeDefined();
-    expect(readResults().beginner?.score).toBe(10);
+    expect(readResults()["prefecture-war:beginner"]?.score).toBe(10);
     expect(onComplete).toHaveBeenCalledOnce();
   });
 
