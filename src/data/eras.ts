@@ -62,7 +62,7 @@ export const eras: Era[] = [
     years: "1975–1999",
     summary: "海洋博を軸に、交通、観光、地域づくりの変化をたどります。",
     accent: "#326485",
-    status: "planned",
+    status: "available",
   },
   {
     id: "summit-present",
@@ -71,7 +71,7 @@ export const eras: Era[] = [
     years: "2000–現在",
     summary: "国際交流、世界遺産、文化継承と現代の課題を考えます。",
     accent: "#2c5f83",
-    status: "planned",
+    status: "available",
   },
 ];
 

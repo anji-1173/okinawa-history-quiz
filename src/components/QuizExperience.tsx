@@ -4,7 +4,7 @@ import { questionsFor } from "../data/questions";
 import { resultLabel, saveResult } from "../lib/progress";
 import { shuffleQuestionChoices } from "../lib/quizChoices";
 import { playFeedbackSound } from "../lib/soundFeedback";
-import type { Difficulty, QuizResult } from "../types";
+import type { Difficulty, QuizResults } from "../types";
 import Ruby from "./Ruby";
 import SourceLinks from "./SourceLinks";
 import "./quiz-navigation.css";
@@ -15,7 +15,7 @@ interface QuizExperienceProps {
   difficulty: Difficulty;
   onExit: () => void;
   onOpenMap: (placeId: string) => void;
-  onComplete: (results: Partial<Record<Difficulty, QuizResult>>) => void;
+  onComplete: (results: QuizResults) => void;
 }
 
 export default function QuizExperience({
@@ -84,6 +84,7 @@ export default function QuizExperience({
     if (allAnswered || questionIndex === quizQuestions.length - 1) {
       if (allAnswered) {
         const results = saveResult({
+          eraId,
           difficulty,
           score,
           completedAt: new Date().toISOString(),

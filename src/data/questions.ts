@@ -3,12 +3,18 @@ import { satsumaQuestions } from "./satsumaQuestions";
 import { postwarQuestions } from "./postwarQuestions";
 import { usAdministrationQuestions } from "./usAdministrationQuestions";
 import { reversionQuestions } from "./reversionQuestions";
+import { reversionFurtherQuestions } from "./reversionFurtherQuestions";
+import { expoQuestions } from "./expoQuestions";
+import { modernQuestions } from "./modernQuestions";
 
 export const questions: Question[] = [
   ...satsumaQuestions,
   ...postwarQuestions,
   ...usAdministrationQuestions,
   ...reversionQuestions,
+  ...reversionFurtherQuestions,
+  ...expoQuestions,
+  ...modernQuestions,
   {
     id: "war-b01",
     eraId: "prefecture-war",
@@ -152,7 +158,7 @@ export const questions: Question[] = [
     eraId: "prefecture-war",
     difficulty: "intermediate",
     theme: "時系列",
-    prompt: "次の出来事を古い順に並べたものはどれでしょう？",
+    prompt: "琉球藩の設置から沖縄戦までの出来事を、古い順に並べたものはどれでしょう？",
     choices: [
       "琉球藩設置 → 沖縄県設置 → 対馬丸出航 → 米軍の沖縄本島上陸",
       "琉球藩設置 → 対馬丸出航 → 沖縄県設置 → 米軍の沖縄本島上陸",
@@ -656,7 +662,7 @@ export const questions: Question[] = [
     eraId: "kingdom-trade",
     difficulty: "intermediate",
     theme: "時系列",
-    prompt: "次の出来事を古い順に並べたものはどれでしょう？",
+    prompt: "三山統一から尚真王の即位までの出来事を、古い順に並べたものはどれでしょう？",
     choices: [
       "三山統一 → 万国津梁の鐘の鋳造 → 第二尚氏の成立 → 尚真王の即位",
       "万国津梁の鐘の鋳造 → 三山統一 → 尚真王の即位 → 第二尚氏の成立",

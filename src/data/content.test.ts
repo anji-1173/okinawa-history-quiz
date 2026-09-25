@@ -7,6 +7,23 @@ import { sourceById } from "./sources";
 describe("historical content integrity", () => {
   const availableEras = eras.filter((era) => era.status === "available");
 
+  it("completes all eight eras with 240 distinct, sourced questions", () => {
+    expect(availableEras).toHaveLength(8);
+    expect(questions).toHaveLength(240);
+    const duplicates = questions.filter((q, index) => questions.findIndex(other => other.prompt === q.prompt) !== index).map(q => ({ id: q.id, prompt: q.prompt }));
+    expect(duplicates).toEqual([]);
+    for (const era of eras) {
+      for (const level of ["beginner", "intermediate", "advanced"]) {
+        expect(questions.filter(q => q.eraId === era.id && q.difficulty === level)).toHaveLength(10);
+      }
+    }
+    for (const question of questions) {
+      expect(new Set(question.choices).size).toBe(4);
+      expect(question.sourceIds.length).toBeGreaterThan(0);
+      expect(question.explanation.trim().length).toBeGreaterThan(0);
+    }
+  });
+
   it("publishes complete ten-question courses while allowing staged era releases", () => {
     for (const era of availableEras) {
       const eraQuestions = questions.filter((question) => question.eraId === era.id);
